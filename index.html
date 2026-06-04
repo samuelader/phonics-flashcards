@@ -73,6 +73,8 @@
   .dot.now{background:var(--brand);transform:scale(1.25);}
   .card{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;min-height:0;padding:16px;text-align:center;}
   .grapheme{font-size:clamp(120px,40vh,300px);font-weight:900;line-height:.9;color:var(--ink);}
+  .pic-img{width:120px;height:120px;object-fit:contain;margin:8px auto 0;display:block;}
+  .pic-emoji{font-size:80px;text-align:center;margin:8px 0 0;}
   .word{font-size:clamp(64px,16vh,140px);font-weight:900;letter-spacing:.06em;}
   .word .gp{display:inline-block;padding:0 .02em;border-radius:14px;}
   .word .gp.tapped{color:var(--brand);}
@@ -347,6 +349,12 @@ const GPCS = [
 ];
 const GPC_SET = Object.fromEntries(GPCS.map(g=>[g.id,g.set]));
 
+function picHTML(word, size=120){
+  const emoji = PIC[word]||"";
+  return `<img src="images/${word}.svg" alt="${word}" class="pic-img" style="width:${size}px;height:${size}px"
+    onerror="this.outerHTML='<div class=\\'pic-emoji\\' style=\\'font-size:${Math.round(size*0.65)}px\\'>${emoji}</div>">`;
+}
+
 // Pictures: word -> emoji (original, generic; no licensed art).
 const PIC = {
   sun:"☀️",ant:"🐜",tap:"🚰",pan:"🍳",insect:"🐛",net:"🥅",map:"🗺️",dog:"🐕",
@@ -408,7 +416,7 @@ const WORD_SEED = [
 ];
 const WORDS = WORD_SEED.map(([text,graphemes,real,picture])=>({
   kind:"word", id:text, text, graphemes, real, picture,
-  minSet: Math.max(...graphemes.map(g=>GPC_SET[g]))
+  minSet: Math.max(2, ...graphemes.map(g=>GPC_SET[g]))
 }));
 
 // Tricky words (sight). Autumn 1: sets 1-5. Autumn 2: sets 6-9.
@@ -765,6 +773,11 @@ function renderSay(item,card,foot){
   if(item.kind==="gpc"){
     const g=document.createElement("div"); g.className="grapheme"; g.textContent=item.id;
     card.appendChild(g);
+    if(item.examplePicture){
+      const pic=document.createElement("div");
+      pic.innerHTML=picHTML(item.examplePicture, 120);
+      card.appendChild(pic);
+    }
     if(RECORDED.has(item.id)){
       const pm=document.createElement("button"); pm.className="play-mine"; pm.textContent="▶ Play mine";
       pm.onclick=()=>playGrapheme(item.id);
@@ -947,7 +960,7 @@ function renderGpcGrid(){
     cell.className="gpc-cell"+(rec?" rec":"")+(locked?" locked":"");
     const sec=isSecure(g.id);
     cell.innerHTML=`<div class="g">${g.id}</div>
-      <div class="st">${PIC[g.examplePicture]||""} ${rec?"🎙️":"—"}${sec?' <span class="sec">●secure</span>':""}</div>`;
+      <div class="st">${g.examplePicture?picHTML(g.examplePicture,28):""} ${rec?"🎙️":"—"}${sec?' <span class="sec">●secure</span>':""}</div>`;
     cell.onclick=()=>openRec(g);
     grid.appendChild(cell);
   });
