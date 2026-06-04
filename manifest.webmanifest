@@ -1,0 +1,26 @@
+{
+  "name": "Phonics Flashcards",
+  "short_name": "Phonics",
+  "description": "Little Wandle Phase 2 phonics practice with parent-recorded sounds. Offline, single-child, no accounts.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f7fb",
+  "theme_color": "#3a7bd5",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Crect width='192' height='192' rx='40' fill='%233a7bd5'/%3E%3Ctext x='96' y='138' font-size='120' text-anchor='middle' font-family='Arial' fill='white'%3Ea%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='110' fill='%233a7bd5'/%3E%3Ctext x='256' y='366' font-size='320' text-anchor='middle' font-family='Arial' fill='white'%3Ea%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

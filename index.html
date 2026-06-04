@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+<meta name="theme-color" content="#3a7bd5" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Phonics" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%233a7bd5'/%3E%3Ctext x='90' y='128' font-size='110' text-anchor='middle' font-family='Arial' fill='white'%3Ea%3C/text%3E%3C/svg%3E" />
+<title>Phonics</title>
+<style>
+  :root{
+    --bg:#f4f7fb; --panel:#ffffff; --ink:#1d2433; --muted:#6b7686;
+    --brand:#3a7bd5; --brand-2:#27c2a0; --good:#27c2a0; --soft:#ffd166;
+    --tile:#ffffff; --shadow:0 8px 24px rgba(20,40,80,.12);
+    --tap:64px;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;height:100%;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg); color:var(--ink);
+    overflow:hidden; touch-action:manipulation;
+    -webkit-user-select:none; user-select:none;
+  }
+  #app{position:fixed;inset:0;display:flex;flex-direction:column;}
+  .screen{flex:1;display:none;flex-direction:column;min-height:0;
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);}
+  .screen.active{display:flex;}
+
+  /* generic */
+  button{font-family:inherit;border:none;cursor:pointer;background:none;color:inherit;}
+  .center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;min-height:0;padding:16px;}
+  .row{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;}
+  .big-btn{
+    min-width:var(--tap);min-height:var(--tap);padding:18px 30px;border-radius:24px;
+    font-size:26px;font-weight:800;background:var(--brand);color:#fff;box-shadow:var(--shadow);
+  }
+  .big-btn:active{transform:scale(.96);}
+  .big-btn.alt{background:var(--brand-2);}
+  .big-btn.ghost{background:#fff;color:var(--brand);border:3px solid #dce6f5;box-shadow:none;}
+  .pill{padding:12px 18px;border-radius:18px;background:#fff;box-shadow:var(--shadow);font-weight:700;font-size:18px;}
+
+  /* gear / parent gate */
+  .gear{position:absolute;top:calc(env(safe-area-inset-top) + 10px);right:14px;
+    width:50px;height:50px;border-radius:50%;background:#fff;box-shadow:var(--shadow);
+    display:flex;align-items:center;justify-content:center;font-size:24px;z-index:30;opacity:.55;}
+  .gear:active{opacity:1;}
+  .gear .ring{position:absolute;inset:0;border-radius:50%;
+    background:conic-gradient(var(--brand) var(--p,0deg),transparent 0);
+    -webkit-mask:radial-gradient(circle 22px at center, transparent 21px, #000 22px);
+            mask:radial-gradient(circle 22px at center, transparent 21px, #000 22px);}
+
+  /* HOME */
+  #home .title{font-size:30px;font-weight:900;color:var(--brand);letter-spacing:.5px;}
+  #home .sub{color:var(--muted);font-weight:600;margin-top:-6px;}
+  .play{
+    width:min(62vw,260px);aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #5fa0ef, var(--brand));
+    color:#fff;font-size:34px;font-weight:900;box-shadow:0 16px 40px rgba(40,90,180,.4);
+    display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;
+  }
+  .play .emoji{font-size:64px;}
+  .play:active{transform:scale(.97);}
+
+  /* ROUND */
+  #round{position:relative;}
+  .progress{display:flex;gap:8px;justify-content:center;padding:14px;}
+  .dot{width:14px;height:14px;border-radius:50%;background:#d8e2f0;}
+  .dot.done{background:var(--good);}
+  .dot.now{background:var(--brand);transform:scale(1.25);}
+  .card{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;min-height:0;padding:16px;text-align:center;}
+  .grapheme{font-size:clamp(120px,40vh,300px);font-weight:900;line-height:.9;color:var(--ink);}
+  .word{font-size:clamp(64px,16vh,140px);font-weight:900;letter-spacing:.06em;}
+  .word .gp{display:inline-block;padding:0 .02em;border-radius:14px;}
+  .word .gp.tapped{color:var(--brand);}
+  .word .gp.touchable:active{background:#e9f1ff;}
+  .speaker{width:110px;height:110px;border-radius:50%;background:var(--brand);color:#fff;
+    font-size:54px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);}
+  .speaker:active{transform:scale(.95);}
+  .tiles{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+  .tile{min-width:96px;min-height:96px;padding:14px 22px;border-radius:22px;background:var(--tile);
+    box-shadow:var(--shadow);font-size:54px;font-weight:900;display:flex;align-items:center;justify-content:center;}
+  .tile:active{transform:scale(.96);}
+  .tile.pic{font-size:62px;}
+  .tile.wobble{animation:wobble .4s;}
+  .tile.pop{animation:pop .35s;}
+  .pic-big{font-size:clamp(90px,30vh,200px);}
+  .markbar{display:flex;gap:18px;justify-content:center;padding:10px 16px 22px;}
+  .mark{min-width:120px;min-height:var(--tap);border-radius:22px;font-size:30px;font-weight:900;color:#fff;box-shadow:var(--shadow);}
+  .mark.no{background:#f0a0a0;}
+  .mark.yes{background:var(--good);}
+  .play-mine{padding:14px 20px;border-radius:18px;background:#fff;box-shadow:var(--shadow);font-size:20px;font-weight:800;color:var(--brand);}
+  .hint{color:var(--muted);font-weight:600;font-size:16px;}
+  .sortzone{display:flex;gap:22px;justify-content:center;width:100%;}
+  .bin{flex:1;max-width:200px;min-height:130px;border-radius:24px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;font-size:64px;box-shadow:var(--shadow);font-weight:800;}
+  .bin.chest{background:#fff6db;border:4px solid var(--soft);}
+  .bin.trash{background:#eef1f5;border:4px solid #c9d2dd;}
+  .bin:active{transform:scale(.97);}
+  .bin small{font-size:15px;color:var(--muted);font-weight:700;}
+
+  /* feedback overlay */
+  #fx{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden;}
+  .burst{position:absolute;font-size:46px;animation:rise 700ms ease-out forwards;}
+  .confetti{position:absolute;top:-20px;width:12px;height:18px;border-radius:3px;animation:fall linear forwards;}
+  @keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.18)}100%{transform:scale(1)}}
+  @keyframes wobble{0%,100%{transform:translateX(0)}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-7px)}80%{transform:translateX(7px)}}
+  @keyframes rise{0%{transform:translateY(0) scale(.6);opacity:0}30%{opacity:1}100%{transform:translateY(-160px) scale(1.3);opacity:0}}
+  @keyframes fall{to{transform:translateY(110vh) rotate(720deg);}}
+  @keyframes cheer{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+  .cheer{animation:cheer .5s;}
+
+  /* gallery */
+  .head{display:flex;align-items:center;gap:12px;padding:14px 16px;}
+  .head h2{margin:0;font-size:24px;}
+  .head .back{margin-left:auto;}
+  .scroll{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;padding:0 16px 24px;}
+  .sticker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:12px;}
+  .sticker{aspect-ratio:1;border-radius:18px;background:#fff;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;font-size:40px;}
+  .medals{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;}
+  .medal{padding:14px 16px;border-radius:18px;background:linear-gradient(135deg,#ffe27a,#ffb74d);font-weight:900;box-shadow:var(--shadow);display:flex;align-items:center;gap:8px;}
+
+  /* parent panel */
+  #parent{background:#eef2f8;}
+  .pcard{background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:16px;margin-bottom:16px;}
+  .pcard h3{margin:0 0 10px;font-size:18px;}
+  .pcard p.note{color:var(--muted);font-size:14px;margin:6px 0;}
+  .gpc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(70px,1fr));gap:10px;}
+  .gpc-cell{border-radius:14px;background:#f3f6fb;border:2px solid #e2e9f3;padding:10px 4px;text-align:center;}
+  .gpc-cell .g{font-size:30px;font-weight:900;}
+  .gpc-cell .st{font-size:12px;color:var(--muted);font-weight:700;margin-top:4px;}
+  .gpc-cell.rec{border-color:var(--good);background:#e9fbf5;}
+  .gpc-cell.locked{opacity:.35;}
+  .gpc-cell .sec{color:var(--good);}
+  .recmodal{position:fixed;inset:0;background:rgba(20,30,50,.55);z-index:60;display:none;align-items:center;justify-content:center;padding:20px;}
+  .recmodal.open{display:flex;}
+  .recbox{background:#fff;border-radius:22px;padding:24px;width:min(420px,92vw);text-align:center;box-shadow:var(--shadow);}
+  .recbox .glyph{font-size:90px;font-weight:900;line-height:1;}
+  .holdbtn{margin:18px auto;width:130px;height:130px;border-radius:50%;background:#f0a0a0;color:#fff;
+    font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);}
+  .holdbtn.recording{background:#e74c3c;animation:pulse 1s infinite;}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+  .toggle-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eef1f6;}
+  .toggle-row:last-child{border-bottom:none;}
+  .switch{width:58px;height:34px;border-radius:20px;background:#cdd6e2;position:relative;transition:.2s;}
+  .switch.on{background:var(--good);}
+  .switch .knob{position:absolute;top:3px;left:3px;width:28px;height:28px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+  .switch.on .knob{left:27px;}
+  .stepper{display:flex;align-items:center;gap:14px;}
+  .stepper button{width:46px;height:46px;border-radius:14px;background:#eef2f8;font-size:26px;font-weight:900;}
+  .setline{font-size:22px;font-weight:900;}
+  .danger{color:#c0392b;}
+  .file-in{display:none;}
+  .toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:var(--ink);color:#fff;
+    padding:12px 18px;border-radius:14px;z-index:70;font-weight:700;opacity:0;transition:.25s;}
+  .toast.show{opacity:1;}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- HOME (child) -->
+  <section id="home" class="screen active">
+    <div class="gear" id="gear"><div class="ring"></div>⚙️</div>
+    <div class="center">
+      <div class="title">Phonics</div>
+      <div class="sub" id="homeSub">Set 1</div>
+      <button class="play" id="playBtn"><span class="emoji">▶️</span><span>Play</span></button>
+      <div class="row">
+        <button class="big-btn ghost" id="stickerBtn">⭐ Stickers</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROUND (child) -->
+  <section id="round" class="screen">
+    <div class="progress" id="progress"></div>
+    <div class="card" id="card"></div>
+    <div id="cardFoot"></div>
+  </section>
+
+  <!-- DONE (child) -->
+  <section id="done" class="screen">
+    <div class="center">
+      <div class="cheer" style="font-size:120px" id="doneEmoji">🎉</div>
+      <div class="title">Great job!</div>
+      <div class="pill" id="stickerEarned">⭐ New sticker!</div>
+      <div class="row">
+        <button class="big-btn" id="againBtn">Play again</button>
+        <button class="big-btn ghost" id="homeBtn">Home</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STICKER BOOK (child) -->
+  <section id="stickers" class="screen">
+    <div class="head"><h2>⭐ My Stickers</h2><button class="big-btn ghost back" data-go="home">Back</button></div>
+    <div class="scroll">
+      <div id="medalWrap"></div>
+      <div class="sticker-grid" id="stickerGrid"></div>
+    </div>
+  </section>
+
+  <!-- PARENT PANEL -->
+  <section id="parent" class="screen">
+    <div class="head"><h2>Parent</h2><button class="big-btn ghost back" data-go="home">Done</button></div>
+    <div class="scroll">
+
+      <div class="pcard">
+        <h3>Current set</h3>
+        <p class="note">Advance only when the current sounds are secure (green below).</p>
+        <div class="row" style="justify-content:space-between">
+          <div class="setline" id="setLabel">Set 1</div>
+          <div class="stepper">
+            <button id="setDown">−</button>
+            <button id="setUp">+</button>
+          </div>
+        </div>
+        <p class="note" id="setUnlocks"></p>
+      </div>
+
+      <div class="pcard">
+        <h3>Sounds &amp; recordings</h3>
+        <p class="note">Tap a sound to record it. Say the <b>pure</b> sound — /t/, not “tuh”. Green = recorded.</p>
+        <div class="gpc-grid" id="gpcGrid"></div>
+      </div>
+
+      <div class="pcard">
+        <h3>Game modes</h3>
+        <div id="modeToggles"></div>
+        <div class="toggle-row">
+          <span>Round length</span>
+          <div class="stepper">
+            <button id="rlDown">−</button><span class="setline" id="rlLabel">8</span><button id="rlUp">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <h3>Backup</h3>
+        <p class="note">Saves progress and all recordings to one file. Restore it on another device.</p>
+        <div class="row" style="justify-content:flex-start">
+          <button class="big-btn" id="exportBtn">⬇️ Backup</button>
+          <button class="big-btn ghost" id="importBtn">⬆️ Restore</button>
+          <input type="file" id="importFile" class="file-in" accept="application/json,.json" />
+        </div>
+      </div>
+
+      <div class="pcard">
+        <h3>Reset</h3>
+        <p class="note danger">Erase all progress and recordings on this device.</p>
+        <button class="big-btn ghost danger" id="resetBtn">Erase everything</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- recording modal -->
+<div class="recmodal" id="recModal">
+  <div class="recbox">
+    <div class="glyph" id="recGlyph">s</div>
+    <div class="hint" id="recHint">Hold the button and say /s/</div>
+    <button class="holdbtn" id="holdBtn">Hold to record</button>
+    <div class="row">
+      <button class="play-mine" id="recPlay">▶ Play</button>
+      <button class="big-btn ghost" id="recClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="fx"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+/* ============================================================
+   Phonics — Little Wandle Phase 2. Vanilla, offline-first.
+   ============================================================ */
+
+/* ---------- Config (§6) ---------- */
+const CONFIG = {
+  BASE:1, ACC:3, REC:0.5, G_MAX:6, NEW_WINDOW:3, NEW_BOOST:2,
+  WINDOW:5, SECURE_TOTAL:4, SECURE_ACC:0.8,
+  ROUND_GAP_MS:560,   // gap between robot sounds is set separately
+  MAX_SET:9
+};
+const ROBOT_GAP = 0.5; // seconds between sounds in Robot voice
+
+/* ---------- Content (§4) ---------- */
+// GPCs in Little Wandle order. examplePicture is a word -> emoji via PIC.
+const GPCS = [
+  // set 1
+  {id:"s",set:1,type:"single",examplePicture:"sun"},
+  {id:"a",set:1,type:"single",examplePicture:"ant"},
+  {id:"t",set:1,type:"single",examplePicture:"tap"},
+  {id:"p",set:1,type:"single",examplePicture:"pan"},
+  // set 2
+  {id:"i",set:2,type:"single",examplePicture:"igloo"},
+  {id:"n",set:2,type:"single",examplePicture:"net"},
+  {id:"m",set:2,type:"single",examplePicture:"map"},
+  {id:"d",set:2,type:"single",examplePicture:"dog"},
+  // set 3
+  {id:"g",set:3,type:"single",examplePicture:"goat"},
+  {id:"o",set:3,type:"single",examplePicture:"octopus"},
+  {id:"c",set:3,type:"single",examplePicture:"cat"},
+  {id:"k",set:3,type:"single",examplePicture:"kite"},
+  // set 4
+  {id:"ck",set:4,type:"digraph",examplePicture:"duck"},
+  {id:"e",set:4,type:"single",examplePicture:"egg"},
+  {id:"u",set:4,type:"single",examplePicture:"umbrella"},
+  {id:"r",set:4,type:"single",examplePicture:"rabbit"},
+  // set 5
+  {id:"h",set:5,type:"single",examplePicture:"hat"},
+  {id:"b",set:5,type:"single",examplePicture:"bus"},
+  {id:"f",set:5,type:"single",examplePicture:"fish"},
+  {id:"l",set:5,type:"single",examplePicture:"leg"},
+  // set 6
+  {id:"ff",set:6,type:"double",examplePicture:"puff"},
+  {id:"ll",set:6,type:"double",examplePicture:"bell"},
+  {id:"ss",set:6,type:"double",examplePicture:"hiss"},
+  {id:"j",set:6,type:"single",examplePicture:"jam"},
+  // set 7
+  {id:"v",set:7,type:"single",examplePicture:"van"},
+  {id:"w",set:7,type:"single",examplePicture:"web"},
+  {id:"x",set:7,type:"single",examplePicture:"fox"},
+  {id:"y",set:7,type:"single",examplePicture:"yoyo"},
+  // set 8
+  {id:"z",set:8,type:"single",examplePicture:"zip"},
+  {id:"zz",set:8,type:"double",examplePicture:"buzz"},
+  {id:"qu",set:8,type:"digraph",examplePicture:"queen"},
+  // set 9
+  {id:"ch",set:9,type:"digraph",examplePicture:"chips"},
+  {id:"sh",set:9,type:"digraph",examplePicture:"ship"},
+  {id:"th",set:9,type:"digraph",examplePicture:"thumb"},
+  {id:"ng",set:9,type:"digraph",examplePicture:"ring"},
+  {id:"nk",set:9,type:"digraph",examplePicture:"pink"},
+];
+const GPC_SET = Object.fromEntries(GPCS.map(g=>[g.id,g.set]));
+
+// Pictures: word -> emoji (original, generic; no licensed art).
+const PIC = {
+  sun:"☀️",ant:"🐜",tap:"🚰",pan:"🍳",igloo:"🧊",net:"🥅",map:"🗺️",dog:"🐕",
+  goat:"🐐",octopus:"🐙",cat:"🐱",kite:"🪁",duck:"🦆",egg:"🥚",umbrella:"☂️",rabbit:"🐰",
+  hat:"🎩",bus:"🚌",fish:"🐟",leg:"🦵",puff:"💨",bell:"🔔",hiss:"🐍",jam:"🍓",
+  van:"🚐",web:"🕸️",fox:"🦊",yoyo:"🪀",zip:"🤐",buzz:"🐝",queen:"👑",chips:"🍟",
+  ship:"🚢",thumb:"👍",ring:"💍",pink:"🌸",
+  pin:"📌",tin:"🥫",man:"🧍",pot:"🍲",top:"🔝",can:"🥫",sun2:"☀️",cup:"☕",
+  run:"🏃",red:"🟥",sock:"🧦",bed:"🛏️",hen:"🐔",bat:"🦇",fan:"🪭",lip:"👄",
+  jet:"✈️",six:"6️⃣",quiz:"❓",zap:"⚡",shop:"🏪",chip:"🍟",
+};
+
+// Decodable words. minSet computed from graphemes. picture = key in PIC (or null).
+const WORD_SEED = [
+  // set 1
+  ["sat",["s","a","t"],true,null],["pat",["p","a","t"],true,null],["tap",["t","a","p"],true,"tap"],
+  ["sap",["s","a","p"],true,null],["at",["a","t"],true,null],
+  ["tat",["t","a","t"],false,null],["pas",["p","a","s"],false,null],["tas",["t","a","s"],false,null],
+  // set 2
+  ["sit",["s","i","t"],true,null],["pin",["p","i","n"],true,"pin"],["man",["m","a","n"],true,"man"],
+  ["mad",["m","a","d"],true,null],["dad",["d","a","d"],true,null],["tin",["t","i","n"],true,"tin"],
+  ["pan",["p","a","n"],true,"pan"],["nap",["n","a","p"],true,null],["dip",["d","i","p"],true,null],
+  ["nid",["n","i","d"],false,null],["mip",["m","i","p"],false,null],["dat",["d","a","t"],false,null],
+  // set 3
+  ["dog",["d","o","g"],true,"dog"],["cot",["c","o","t"],true,null],["cat",["c","a","t"],true,"cat"],
+  ["can",["c","a","n"],true,"can"],["got",["g","o","t"],true,null],["pot",["p","o","t"],true,"pot"],
+  ["top",["t","o","p"],true,"top"],["cop",["c","o","p"],true,null],["kit",["k","i","t"],true,null],
+  ["gat",["g","a","t"],false,null],["nog",["n","o","g"],false,null],["pog",["p","o","g"],false,null],
+  // set 4
+  ["duck",["d","u","ck"],true,"duck"],["red",["r","e","d"],true,"red"],["run",["r","u","n"],true,"run"],
+  ["cup",["c","u","p"],true,"cup"],["sun",["s","u","n"],true,"sun"],["net",["n","e","t"],true,"net"],
+  ["pet",["p","e","t"],true,null],["rug",["r","u","g"],true,null],["cut",["c","u","t"],true,null],
+  ["sock",["s","o","ck"],true,"sock"],["ruck",["r","u","ck"],false,null],["ked",["k","e","d"],false,null],
+  // set 5
+  ["hat",["h","a","t"],true,"hat"],["bus",["b","u","s"],true,"bus"],["fun",["f","u","n"],true,null],
+  ["leg",["l","e","g"],true,"leg"],["bed",["b","e","d"],true,"bed"],["hen",["h","e","n"],true,"hen"],
+  ["bat",["b","a","t"],true,"bat"],["fan",["f","a","n"],true,"fan"],["lip",["l","i","p"],true,"lip"],
+  ["big",["b","i","g"],true,null],["hib",["h","i","b"],false,null],["fot",["f","o","t"],false,null],
+  // set 6
+  ["huff",["h","u","ff"],true,"puff"],["bell",["b","e","ll"],true,"bell"],["kiss",["k","i","ss"],true,null],
+  ["jam",["j","a","m"],true,"jam"],["jet",["j","e","t"],true,"jet"],["jog",["j","o","g"],true,null],
+  ["doll",["d","o","ll"],true,null],["mess",["m","e","ss"],true,null],
+  ["luff",["l","u","ff"],false,null],["niss",["n","i","ss"],false,null],
+  // set 7
+  ["van",["v","a","n"],true,"van"],["web",["w","e","b"],true,"web"],["fox",["f","o","x"],true,"fox"],
+  ["yes",["y","e","s"],true,null],["wig",["w","i","g"],true,null],["six",["s","i","x"],true,"six"],
+  ["wax",["w","a","x"],true,null],["yet",["y","e","t"],true,null],
+  ["vob",["v","o","b"],false,null],["wem",["w","e","m"],false,null],["vix",["v","i","x"],false,null],
+  // set 8
+  ["zip",["z","i","p"],true,"zip"],["buzz",["b","u","zz"],true,"buzz"],["quiz",["qu","i","z"],true,"quiz"],
+  ["zap",["z","a","p"],true,"zap"],["fizz",["f","i","zz"],true,null],["quit",["qu","i","t"],true,null],
+  ["zog",["z","o","g"],false,null],["zib",["z","i","b"],false,null],["quod",["qu","o","d"],false,null],
+  // set 9
+  ["chip",["ch","i","p"],true,"chip"],["shop",["sh","o","p"],true,"shop"],["this",["th","i","s"],true,null],
+  ["ring",["r","i","ng"],true,"ring"],["pink",["p","i","nk"],true,"pink"],["ship",["sh","i","p"],true,"ship"],
+  ["chin",["ch","i","n"],true,null],["fish",["f","i","sh"],true,"fish"],["bash",["b","a","sh"],true,null],
+  ["bang",["b","a","ng"],true,null],["sink",["s","i","nk"],true,null],
+  ["chom",["ch","o","m"],false,null],["shom",["sh","o","m"],false,null],["thut",["th","u","t"],false,null],
+];
+const WORDS = WORD_SEED.map(([text,graphemes,real,picture])=>({
+  kind:"word", id:text, text, graphemes, real, picture,
+  minSet: Math.max(...graphemes.map(g=>GPC_SET[g]))
+}));
+
+// Tricky words (sight). Autumn 1: sets 1-5. Autumn 2: sets 6-9.
+const TRICKY_SEED = [
+  ["is",1],["I",1],["the",1],
+  ["as",6],["and",6],["has",6],["his",6],["her",6],["go",6],["no",6],["to",6],
+  ["into",6],["she",6],["he",6],["of",6],["we",6],["me",6],["be",6],
+  ["put",6,true],["pull",6,true],["full",6,true],["push",6,true],
+];
+const TRICKY = TRICKY_SEED.map(([text,set,caveat])=>({
+  kind:"word", id:text, text, tricky:true, real:true, picture:null,
+  graphemes:null, minSet:set, set, regionalCaveat:!!caveat
+}));
+
+const ALL_WORDS = WORDS.concat(TRICKY);
+
+const SET_UNLOCKS = {
+  1:"s a t p", 2:"i n m d", 3:"g o c k", 4:"ck e u r", 5:"h b f l",
+  6:"ff ll ss j", 7:"v w x y", 8:"z zz qu", 9:"ch sh th ng nk"
+};
+const MODE_LABELS = {say:"Say it",find:"Find it",blend:"Blend it",robot:"Robot voice",treasure:"Treasure or trash"};
+
+/* ---------- Progress (localStorage §3.4) ---------- */
+const PKEY = "phonics.progress";
+function defaultProgress(){
+  return {
+    currentSet:1, currentRound:1, items:{},
+    stickers:0, medals:[],
+    settings:{ modesEnabled:["say","find","blend","robot","treasure"], roundLength:8 }
+  };
+}
+let P = loadProgress();
+function loadProgress(){
+  try{
+    const raw = localStorage.getItem(PKEY);
+    if(!raw) return defaultProgress();
+    const p = JSON.parse(raw);
+    const d = defaultProgress();
+    return Object.assign(d, p, {settings:Object.assign(d.settings, p.settings||{})});
+  }catch(e){ return defaultProgress(); }
+}
+function saveProgress(){ localStorage.setItem(PKEY, JSON.stringify(P)); }
+
+/* ---------- IndexedDB audio (§3.5) ---------- */
+const DB_NAME="phonics", STORE="audio";
+let _db=null;
+function db(){
+  if(_db) return Promise.resolve(_db);
+  return new Promise((res,rej)=>{
+    const r = indexedDB.open(DB_NAME,1);
+    r.onupgradeneeded = ()=>{ r.result.createObjectStore(STORE); };
+    r.onsuccess = ()=>{ _db=r.result; res(_db); };
+    r.onerror = ()=>rej(r.error);
+  });
+}
+async function putAudio(key,val){
+  const d=await db();
+  return new Promise((res,rej)=>{
+    const tx=d.transaction(STORE,"readwrite");
+    tx.objectStore(STORE).put(val,key);
+    tx.oncomplete=res; tx.onerror=()=>rej(tx.error);
+  });
+}
+async function getAudio(key){
+  const d=await db();
+  return new Promise((res,rej)=>{
+    const tx=d.transaction(STORE,"readonly");
+    const rq=tx.objectStore(STORE).get(key);
+    rq.onsuccess=()=>res(rq.result||null); rq.onerror=()=>rej(rq.error);
+  });
+}
+async function getAllAudio(){
+  const d=await db();
+  return new Promise((res,rej)=>{
+    const tx=d.transaction(STORE,"readonly");
+    const store=tx.objectStore(STORE);
+    const out={};
+    const cur=store.openCursor();
+    cur.onsuccess=()=>{ const c=cur.result; if(c){ out[c.key]=c.value; c.continue(); } else res(out); };
+    cur.onerror=()=>rej(cur.error);
+  });
+}
+async function clearAudio(){
+  const d=await db();
+  return new Promise((res,rej)=>{
+    const tx=d.transaction(STORE,"readwrite");
+    tx.objectStore(STORE).clear();
+    tx.oncomplete=res; tx.onerror=()=>rej(tx.error);
+  });
+}
+// in-memory cache of which graphemes are recorded
+let RECORDED = new Set();
+async function refreshRecorded(){
+  const all = await getAllAudio();
+  RECORDED = new Set(Object.keys(all));
+  return RECORDED;
+}
+
+/* ---------- Audio playback ---------- */
+let AC=null;
+function audioCtx(){
+  if(!AC) AC = new (window.AudioContext||window.webkitAudioContext)();
+  if(AC.state==="suspended") AC.resume();
+  return AC;
+}
+const bufferCache = new Map();
+async function decode(grapheme){
+  if(bufferCache.has(grapheme)) return bufferCache.get(grapheme);
+  const rec = await getAudio(grapheme);
+  if(!rec) return null;
+  const arr = await rec.blob.arrayBuffer();
+  const buf = await audioCtx().decodeAudioData(arr.slice(0));
+  bufferCache.set(grapheme, buf);
+  return buf;
+}
+async function playGrapheme(grapheme){
+  const buf = await decode(grapheme);
+  if(!buf) return;
+  const ctx=audioCtx();
+  const src=ctx.createBufferSource();
+  src.buffer=buf; src.connect(ctx.destination); src.start();
+}
+// Robot voice: schedule sounds with a beat between them (Web Audio, tight timing)
+async function playRobot(graphemes){
+  const ctx=audioCtx();
+  const bufs=[];
+  for(const g of graphemes){ const b=await decode(g); if(b) bufs.push(b); }
+  let t=ctx.currentTime+0.15;
+  for(const b of bufs){
+    const src=ctx.createBufferSource();
+    src.buffer=b; src.connect(ctx.destination); src.start(t);
+    t += b.duration + ROBOT_GAP;
+  }
+}
+// short generated tones for warm/gentle feedback (no audio files needed)
+function tone(freqs, dur=0.18){
+  try{
+    const ctx=audioCtx();
+    freqs.forEach((f,i)=>{
+      const o=ctx.createOscillator(), g=ctx.createGain();
+      o.type="sine"; o.frequency.value=f;
+      const start=ctx.currentTime+i*0.08;
+      g.gain.setValueAtTime(0.0001,start);
+      g.gain.exponentialRampToValueAtTime(0.25,start+0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001,start+dur);
+      o.connect(g); g.connect(ctx.destination); o.start(start); o.stop(start+dur+0.02);
+    });
+  }catch(e){}
+}
+const goodSound = ()=>tone([523,784],0.16);   // warm rising
+const softSound = ()=>tone([330,247],0.22);    // gentle dip
+
+/* ---------- Weighting & selection (§6) ---------- */
+function itemState(id){
+  return P.items[id] || null;
+}
+function ensureItem(id){
+  if(!P.items[id]) P.items[id]={window:[],lastSeenRound:null,introducedRound:P.currentRound};
+  return P.items[id];
+}
+function accuracy(st){
+  const total=st.window.length;
+  if(!total) return 0;
+  const correct=st.window.reduce((a,b)=>a+b,0);
+  return correct/total;
+}
+function weight(id){
+  const st=ensureItem(id);
+  const a=accuracy(st);
+  const g = st.lastSeenRound==null ? CONFIG.G_MAX : (P.currentRound - st.lastSeenRound);
+  const gg = Math.min(Math.max(g,0), CONFIG.G_MAX);
+  let w = CONFIG.BASE + CONFIG.ACC*(1-a) + CONFIG.REC*gg;
+  if((P.currentRound - st.introducedRound) <= CONFIG.NEW_WINDOW) w += CONFIG.NEW_BOOST;
+  return w;
+}
+function isSecure(id){
+  const st=itemState(id); if(!st) return false;
+  return st.window.length>=CONFIG.SECURE_TOTAL && accuracy(st)>=CONFIG.SECURE_ACC;
+}
+// eligible modes for an item given current settings/recordings/pictures
+function eligibleModes(item){
+  const en = P.settings.modesEnabled;
+  const modes=[];
+  if(item.kind==="gpc"){
+    if(en.includes("say")) modes.push("say");
+    if(en.includes("find") && RECORDED.has(item.id)) modes.push("find");
+  }else{ // word
+    if(item.tricky){
+      if(en.includes("say")) modes.push("say"); // sight word
+    }else{
+      if(en.includes("blend")) modes.push("blend");
+      if(en.includes("treasure")) modes.push("treasure");
+      if(en.includes("robot") && item.real && item.picture &&
+         item.graphemes.every(g=>RECORDED.has(g))) modes.push("robot");
+    }
+  }
+  return modes;
+}
+function eligiblePool(){
+  const pool=[];
+  GPCS.forEach(g=>{ if(g.set<=P.currentSet){ const it={...g,kind:"gpc",set:g.set}; if(eligibleModes(it).length) pool.push(it); }});
+  ALL_WORDS.forEach(w=>{ if(w.minSet<=P.currentSet){ if(eligibleModes(w).length) pool.push(w); }});
+  return pool;
+}
+function setOfItem(it){ return it.kind==="gpc" ? it.set : it.minSet; }
+
+// weighted sampling without replacement, with per-set cap (~half round)
+function buildRound(){
+  const pool=eligiblePool();
+  const n=Math.min(P.settings.roundLength, pool.length);
+  const cap=Math.max(1, Math.ceil(n/2));
+  const setCount={};
+  const chosen=[];
+  let candidates=pool.slice();
+  while(chosen.length<n && candidates.length){
+    const elig=candidates.filter(it=>(setCount[setOfItem(it)]||0)<cap);
+    const list = elig.length? elig : candidates; // relax cap if forced
+    const weights=list.map(it=>weight(it.id));
+    const total=weights.reduce((a,b)=>a+b,0);
+    let r=Math.random()*total, pick=list[list.length-1];
+    for(let i=0;i<list.length;i++){ r-=weights[i]; if(r<=0){ pick=list[i]; break; } }
+    chosen.push(pick);
+    const s=setOfItem(pick); setCount[s]=(setCount[s]||0)+1;
+    candidates=candidates.filter(it=>it.id!==pick.id);
+  }
+  // assign a random eligible mode to each
+  return chosen.map(it=>{
+    const modes=eligibleModes(it);
+    return { item:it, mode:modes[Math.floor(Math.random()*modes.length)] };
+  });
+}
+
+/* ---------- Screens ---------- */
+function show(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("active", s.id===id));
+}
+const $ = sel=>document.querySelector(sel);
+const $$ = sel=>document.querySelectorAll(sel);
+
+function renderHome(){
+  $("#homeSub").textContent = "Set "+P.currentSet;
+}
+
+/* ---------- Feedback fx ---------- */
+function burst(){
+  const fx=$("#fx");
+  const emojis=["⭐","✨","🌟","💫"];
+  for(let i=0;i<7;i++){
+    const e=document.createElement("div");
+    e.className="burst"; e.textContent=emojis[i%emojis.length];
+    e.style.left=(40+Math.random()*20)+"%";
+    e.style.top=(40+Math.random()*15)+"%";
+    e.style.animationDelay=(Math.random()*120)+"ms";
+    fx.appendChild(e);
+    setTimeout(()=>e.remove(),900);
+  }
+}
+function confetti(){
+  const fx=$("#fx");
+  const colors=["#3a7bd5","#27c2a0","#ffd166","#ef6f6c","#9b6bdf"];
+  for(let i=0;i<70;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.background=colors[i%colors.length];
+    c.style.animationDuration=(1.6+Math.random()*1.4)+"s";
+    c.style.animationDelay=(Math.random()*0.5)+"s";
+    fx.appendChild(c);
+    setTimeout(()=>c.remove(),3200);
+  }
+}
+
+/* ---------- Round engine ---------- */
+let round=[]; let rIndex=0; let cardAnswered=false;
+function startRound(){
+  round=buildRound();
+  if(!round.length){ toast("Record some sounds first 🙂"); openParent(); return; }
+  rIndex=0;
+  show("round");
+  renderProgress();
+  renderCard();
+}
+function renderProgress(){
+  const p=$("#progress"); p.innerHTML="";
+  round.forEach((_,i)=>{
+    const d=document.createElement("div");
+    d.className="dot"+(i<rIndex?" done":(i===rIndex?" now":""));
+    p.appendChild(d);
+  });
+}
+function nextCard(){
+  rIndex++;
+  if(rIndex>=round.length){ finishRound(); return; }
+  renderProgress(); renderCard();
+}
+// record outcome for the item on first attempt of the card
+function recordOutcome(id, ok){
+  const st=ensureItem(id);
+  st.window.push(ok?1:0);
+  if(st.window.length>CONFIG.WINDOW) st.window=st.window.slice(-CONFIG.WINDOW);
+  st.lastSeenRound=P.currentRound;
+  saveProgress();
+}
+
+function renderCard(){
+  cardAnswered=false;
+  const {item,mode}=round[rIndex];
+  const card=$("#card"); const foot=$("#cardFoot");
+  card.innerHTML=""; foot.innerHTML="";
+
+  if(mode==="say") return renderSay(item,card,foot);
+  if(mode==="find") return renderFind(item,card,foot);
+  if(mode==="blend") return renderBlend(item,card,foot);
+  if(mode==="robot") return renderRobot(item,card,foot);
+  if(mode==="treasure") return renderTreasure(item,card,foot);
+}
+
+// parent-marked correct/incorrect bar
+function markBar(item,onResult){
+  const bar=document.createElement("div");
+  bar.className="markbar";
+  const no=document.createElement("button"); no.className="mark no"; no.textContent="✕";
+  const yes=document.createElement("button"); yes.className="mark yes"; yes.textContent="✓";
+  no.onclick=()=>onResult(false);
+  yes.onclick=()=>onResult(true);
+  bar.append(no,yes);
+  return bar;
+}
+function handleSelfMark(targetEl, correct, item){
+  // first attempt determines recorded outcome
+  if(!cardAnswered){ cardAnswered=true; recordOutcome(item.id, correct); }
+  if(correct){
+    targetEl.classList.add("pop"); goodSound(); burst();
+    setTimeout(nextCard, 650);
+  }else{
+    targetEl.classList.add("wobble"); softSound();
+    setTimeout(()=>targetEl.classList.remove("wobble"),420);
+  }
+}
+function handleParentMark(item, correct){
+  if(!cardAnswered){ cardAnswered=true; recordOutcome(item.id, correct); }
+  if(correct){ goodSound(); burst(); setTimeout(nextCard,600); }
+  else{
+    softSound();
+    const c=$("#card"); c.classList.add("wobble"); setTimeout(()=>c.classList.remove("wobble"),420);
+  }
+}
+
+/* Say it — grapheme/sight word; parent marks; play-mine if recorded */
+function renderSay(item,card,foot){
+  if(item.kind==="gpc"){
+    const g=document.createElement("div"); g.className="grapheme"; g.textContent=item.id;
+    card.appendChild(g);
+    if(RECORDED.has(item.id)){
+      const pm=document.createElement("button"); pm.className="play-mine"; pm.textContent="▶ Play mine";
+      pm.onclick=()=>playGrapheme(item.id);
+      card.appendChild(pm);
+    }
+  }else{
+    const w=document.createElement("div"); w.className="word"; w.textContent=item.text;
+    card.appendChild(w);
+    const h=document.createElement("div"); h.className="hint"; h.textContent="Tricky word — say it";
+    card.appendChild(h);
+  }
+  foot.appendChild(markBar(item, ok=>handleParentMark(item,ok)));
+}
+
+/* Find it — play recorded sound; child taps matching grapheme */
+function renderFind(item,card,foot){
+  const sp=document.createElement("button"); sp.className="speaker"; sp.textContent="🔊";
+  sp.onclick=()=>playGrapheme(item.id);
+  card.appendChild(sp);
+  const hint=document.createElement("div"); hint.className="hint"; hint.textContent="Tap the sound you hear";
+  card.appendChild(hint);
+
+  // distractors: other recorded GPCs in range
+  const pool=GPCS.filter(g=>g.set<=P.currentSet && g.id!==item.id && RECORDED.has(g.id));
+  shuffle(pool);
+  const opts=[item.id, ...pool.slice(0,3).map(g=>g.id)];
+  shuffle(opts);
+  const tiles=document.createElement("div"); tiles.className="tiles";
+  opts.forEach(id=>{
+    const t=document.createElement("button"); t.className="tile"; t.textContent=id;
+    t.onclick=()=>handleSelfMark(t, id===item.id, item);
+    tiles.appendChild(t);
+  });
+  card.appendChild(tiles);
+  setTimeout(()=>playGrapheme(item.id),250);
+}
+
+/* Blend it — word; tap each grapheme to hear; parent confirms whole word */
+function renderBlend(item,card,foot){
+  const w=document.createElement("div"); w.className="word";
+  item.graphemes.forEach(g=>{
+    const s=document.createElement("span");
+    s.className="gp"+(RECORDED.has(g)?" touchable":"");
+    s.textContent=g;
+    if(RECORDED.has(g)) s.onclick=()=>{ s.classList.add("tapped"); playGrapheme(g); setTimeout(()=>s.classList.remove("tapped"),300); };
+    w.appendChild(s);
+  });
+  card.appendChild(w);
+  const h=document.createElement("div"); h.className="hint"; h.textContent="Tap each sound, then say the word";
+  card.appendChild(h);
+  foot.appendChild(markBar(item, ok=>handleParentMark(item,ok)));
+}
+
+/* Robot voice — play sounds with a beat; child taps the picture */
+function renderRobot(item,card,foot){
+  const sp=document.createElement("button"); sp.className="speaker"; sp.textContent="🤖";
+  sp.onclick=()=>playRobot(item.graphemes);
+  card.appendChild(sp);
+  const hint=document.createElement("div"); hint.className="hint"; hint.textContent="What word? Tap the picture";
+  card.appendChild(hint);
+
+  // picture distractors: other real picture words in range
+  const pool=WORDS.filter(x=>x.real && x.picture && x.minSet<=P.currentSet && x.id!==item.id);
+  shuffle(pool);
+  const opts=[item, ...pool.slice(0,3)];
+  shuffle(opts);
+  const tiles=document.createElement("div"); tiles.className="tiles";
+  opts.forEach(o=>{
+    const t=document.createElement("button"); t.className="tile pic"; t.textContent=PIC[o.picture]||"❓";
+    t.onclick=()=>handleSelfMark(t, o.id===item.id, item);
+    tiles.appendChild(t);
+  });
+  card.appendChild(tiles);
+  setTimeout(()=>playRobot(item.graphemes),300);
+}
+
+/* Treasure or trash — sort decodable word: real->chest, nonsense->bin */
+function renderTreasure(item,card,foot){
+  const w=document.createElement("div"); w.className="word";
+  item.graphemes.forEach(g=>{
+    const s=document.createElement("span");
+    s.className="gp"+(RECORDED.has(g)?" touchable":"");
+    s.textContent=g;
+    if(RECORDED.has(g)) s.onclick=()=>{ s.classList.add("tapped"); playGrapheme(g); setTimeout(()=>s.classList.remove("tapped"),300); };
+    w.appendChild(s);
+  });
+  card.appendChild(w);
+  const zone=document.createElement("div"); zone.className="sortzone";
+  const chest=document.createElement("button"); chest.className="bin chest"; chest.innerHTML="🧰<small>real word</small>";
+  const trash=document.createElement("button"); trash.className="bin trash"; trash.innerHTML="🗑️<small>not a word</small>";
+  chest.onclick=()=>handleSelfMark(chest, item.real===true, item);
+  trash.onclick=()=>handleSelfMark(trash, item.real===false, item);
+  zone.append(chest,trash);
+  card.appendChild(zone);
+}
+
+/* ---------- Round completion & rewards (§7) ---------- */
+function finishRound(){
+  P.currentRound += 1;
+  P.stickers += 1;
+  awardMedals();
+  saveProgress();
+  show("done");
+  confetti();
+  $("#doneEmoji").textContent = ["🎉","🥳","🌈","🎈","⭐"][Math.floor(Math.random()*5)];
+  $("#stickerEarned").textContent = "⭐ Sticker "+P.stickers+"!";
+  goodSound(); setTimeout(goodSound,200);
+  renderHome();
+}
+function awardMedals(){
+  for(let s=1;s<=P.currentSet;s++){
+    const tag="set"+s;
+    if(P.medals.includes(tag)) continue;
+    const gpcs=GPCS.filter(g=>g.set===s);
+    if(gpcs.length && gpcs.every(g=>isSecure(g.id))){
+      P.medals.push(tag);
+    }
+  }
+}
+
+/* ---------- Sticker book / medals ---------- */
+function renderStickers(){
+  const wrap=$("#medalWrap"); wrap.innerHTML="";
+  if(P.medals.length){
+    const m=document.createElement("div"); m.className="medals";
+    P.medals.forEach(tag=>{
+      const num=tag.replace("set","");
+      const el=document.createElement("div"); el.className="medal"; el.innerHTML="🏅 Set "+num+" sounds";
+      m.appendChild(el);
+    });
+    wrap.appendChild(m);
+  }
+  const grid=$("#stickerGrid"); grid.innerHTML="";
+  const faces=["⭐","🌟","✨","🦄","🐱","🐶","🌈","🚀","🎈","🍎","🦋","🐢","🌸","🐬","🦊","🐧"];
+  for(let i=0;i<P.stickers;i++){
+    const s=document.createElement("div"); s.className="sticker"; s.textContent=faces[i%faces.length];
+    grid.appendChild(s);
+  }
+  if(!P.stickers){
+    const e=document.createElement("div"); e.className="hint"; e.textContent="Play a round to earn your first sticker!";
+    grid.appendChild(e);
+  }
+}
+
+/* ---------- Parent panel ---------- */
+function openParent(){ renderParent(); show("parent"); }
+function renderParent(){
+  $("#setLabel").textContent="Set "+P.currentSet;
+  $("#setUnlocks").textContent="Sounds in this set: "+SET_UNLOCKS[P.currentSet];
+  $("#rlLabel").textContent=P.settings.roundLength;
+  renderGpcGrid();
+  renderModeToggles();
+}
+function renderGpcGrid(){
+  const grid=$("#gpcGrid"); grid.innerHTML="";
+  GPCS.forEach(g=>{
+    const cell=document.createElement("button");
+    const rec=RECORDED.has(g.id);
+    const locked=g.set>P.currentSet;
+    cell.className="gpc-cell"+(rec?" rec":"")+(locked?" locked":"");
+    const sec=isSecure(g.id);
+    cell.innerHTML=`<div class="g">${g.id}</div>
+      <div class="st">${PIC[g.examplePicture]||""} ${rec?"🎙️":"—"}${sec?' <span class="sec">●secure</span>':""}</div>`;
+    cell.onclick=()=>openRec(g);
+    grid.appendChild(cell);
+  });
+}
+function renderModeToggles(){
+  const box=$("#modeToggles"); box.innerHTML="";
+  Object.keys(MODE_LABELS).forEach(m=>{
+    const row=document.createElement("div"); row.className="toggle-row";
+    const on=P.settings.modesEnabled.includes(m);
+    row.innerHTML=`<span>${MODE_LABELS[m]}</span>`;
+    const sw=document.createElement("div"); sw.className="switch"+(on?" on":"");
+    sw.innerHTML='<div class="knob"></div>';
+    sw.onclick=()=>{
+      const i=P.settings.modesEnabled.indexOf(m);
+      if(i>=0){ if(P.settings.modesEnabled.length>1) P.settings.modesEnabled.splice(i,1); }
+      else P.settings.modesEnabled.push(m);
+      saveProgress(); renderModeToggles();
+    };
+    row.appendChild(sw);
+    box.appendChild(row);
+  });
+}
+
+/* ---------- Recording flow ---------- */
+let mediaRecorder=null, recChunks=[], recGrapheme=null, recMime="audio/mp4";
+function pickMime(){
+  const cands=["audio/mp4","audio/webm","audio/webm;codecs=opus"];
+  for(const c of cands){ if(window.MediaRecorder && MediaRecorder.isTypeSupported(c)) return c; }
+  return "";
+}
+function openRec(g){
+  recGrapheme=g.id;
+  $("#recGlyph").textContent=g.id;
+  $("#recHint").textContent=`Hold the button and say /${g.id}/ — the pure sound (e.g. ${PIC[g.examplePicture]||g.examplePicture})`;
+  $("#recModal").classList.add("open");
+}
+function closeRec(){ $("#recModal").classList.remove("open"); }
+async function startRecording(){
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    recMime=pickMime();
+    mediaRecorder = recMime ? new MediaRecorder(stream,{mimeType:recMime}) : new MediaRecorder(stream);
+    recChunks=[];
+    mediaRecorder.ondataavailable=e=>{ if(e.data.size) recChunks.push(e.data); };
+    mediaRecorder.onstop=async()=>{
+      stream.getTracks().forEach(t=>t.stop());
+      const mime=mediaRecorder.mimeType||recMime||"audio/mp4";
+      const blob=new Blob(recChunks,{type:mime});
+      await putAudio(recGrapheme,{blob,mime,recordedAt:Date.now()});
+      bufferCache.delete(recGrapheme);
+      await refreshRecorded();
+      renderGpcGrid();
+      toast("Saved /"+recGrapheme+"/");
+    };
+    mediaRecorder.start();
+    $("#holdBtn").classList.add("recording"); $("#holdBtn").textContent="Recording…";
+  }catch(e){ toast("Mic permission needed"); }
+}
+function stopRecording(){
+  if(mediaRecorder && mediaRecorder.state!=="inactive") mediaRecorder.stop();
+  $("#holdBtn").classList.remove("recording"); $("#holdBtn").textContent="Hold to record";
+}
+
+/* ---------- Backup / restore (§8) ---------- */
+function blobToB64(blob){
+  return new Promise((res,rej)=>{
+    const fr=new FileReader();
+    fr.onload=()=>res(fr.result.split(",")[1]);
+    fr.onerror=rej; fr.readAsDataURL(blob);
+  });
+}
+function b64ToBlob(b64,mime){
+  const bin=atob(b64); const len=bin.length; const u=new Uint8Array(len);
+  for(let i=0;i<len;i++) u[i]=bin.charCodeAt(i);
+  return new Blob([u],{type:mime});
+}
+async function exportBackup(){
+  toast("Preparing backup…");
+  const all=await getAllAudio();
+  const audio={};
+  for(const k of Object.keys(all)){
+    const v=all[k];
+    audio[k]={ mime:v.mime, recordedAt:v.recordedAt, b64:await blobToB64(v.blob) };
+  }
+  const data={ app:"phonics", version:1, exportedAt:Date.now(), progress:P, audio };
+  const blob=new Blob([JSON.stringify(data)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url; a.download="phonics-backup-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),2000);
+  toast("Backup ready ⬇️");
+}
+async function importBackup(file){
+  try{
+    const text=await file.text();
+    const data=JSON.parse(text);
+    if(data.app!=="phonics") throw new Error("not a phonics backup");
+    P=Object.assign(defaultProgress(), data.progress||{});
+    P.settings=Object.assign(defaultProgress().settings, (data.progress&&data.progress.settings)||{});
+    saveProgress();
+    await clearAudio(); bufferCache.clear();
+    const audio=data.audio||{};
+    for(const k of Object.keys(audio)){
+      const a=audio[k];
+      await putAudio(k,{ blob:b64ToBlob(a.b64,a.mime||"audio/mp4"), mime:a.mime||"audio/mp4", recordedAt:a.recordedAt||Date.now() });
+    }
+    await refreshRecorded();
+    renderParent(); renderHome();
+    toast("Restored ✓");
+  }catch(e){ toast("Couldn’t read that file"); }
+}
+
+/* ---------- helpers ---------- */
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+let toastTimer=null;
+function toast(msg){
+  const t=$("#toast"); t.textContent=msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove("show"),1800);
+}
+
+/* ---------- wiring ---------- */
+function wire(){
+  $("#playBtn").onclick=()=>{ audioCtx(); startRound(); };
+  $("#stickerBtn").onclick=()=>{ renderStickers(); show("stickers"); };
+  $("#againBtn").onclick=()=>startRound();
+  $("#homeBtn").onclick=()=>{ renderHome(); show("home"); };
+  $$("[data-go]").forEach(b=>b.onclick=()=>{ const g=b.getAttribute("data-go"); if(g==="home") renderHome(); show(g); });
+
+  // parent gate: 2s long-press on gear
+  const gear=$("#gear"); let pressTimer=null, pressStart=0, raf=null;
+  function ringTick(){
+    const p=Math.min(1,(Date.now()-pressStart)/2000);
+    gear.querySelector(".ring").style.setProperty("--p",(p*360)+"deg");
+    if(p<1) raf=requestAnimationFrame(ringTick);
+  }
+  function gateStart(e){
+    e.preventDefault(); pressStart=Date.now(); raf=requestAnimationFrame(ringTick);
+    pressTimer=setTimeout(()=>{ gateEnd(); openParent(); },2000);
+  }
+  function gateEnd(){
+    clearTimeout(pressTimer); cancelAnimationFrame(raf);
+    gear.querySelector(".ring").style.setProperty("--p","0deg");
+  }
+  gear.addEventListener("pointerdown",gateStart);
+  gear.addEventListener("pointerup",gateEnd);
+  gear.addEventListener("pointerleave",gateEnd);
+  gear.addEventListener("pointercancel",gateEnd);
+
+  // set stepper
+  $("#setUp").onclick=()=>{ if(P.currentSet<CONFIG.MAX_SET){ P.currentSet++; saveProgress(); renderParent(); renderHome(); toast("Set "+P.currentSet+" unlocked 🎉"); } };
+  $("#setDown").onclick=()=>{ if(P.currentSet>1){ P.currentSet--; saveProgress(); renderParent(); renderHome(); } };
+  $("#rlUp").onclick=()=>{ if(P.settings.roundLength<14){ P.settings.roundLength++; saveProgress(); renderParent(); } };
+  $("#rlDown").onclick=()=>{ if(P.settings.roundLength>3){ P.settings.roundLength--; saveProgress(); renderParent(); } };
+
+  // recording modal
+  const hold=$("#holdBtn");
+  hold.addEventListener("pointerdown",e=>{e.preventDefault();startRecording();});
+  hold.addEventListener("pointerup",e=>{e.preventDefault();stopRecording();});
+  hold.addEventListener("pointerleave",()=>stopRecording());
+  hold.addEventListener("pointercancel",()=>stopRecording());
+  $("#recPlay").onclick=()=>playGrapheme(recGrapheme);
+  $("#recClose").onclick=closeRec;
+
+  // backup
+  $("#exportBtn").onclick=exportBackup;
+  $("#importBtn").onclick=()=>$("#importFile").click();
+  $("#importFile").onchange=e=>{ if(e.target.files[0]) importBackup(e.target.files[0]); e.target.value=""; };
+
+  // reset
+  $("#resetBtn").onclick=async()=>{
+    if(confirm("Erase all progress and recordings on this device?")){
+      P=defaultProgress(); saveProgress();
+      await clearAudio(); bufferCache.clear(); await refreshRecorded();
+      renderParent(); renderHome(); toast("Erased");
+    }
+  };
+}
+
+/* ---------- boot ---------- */
+async function boot(){
+  wire();
+  await refreshRecorded().catch(()=>{});
+  renderHome();
+  if("serviceWorker" in navigator){
+    try{ await navigator.serviceWorker.register("sw.js"); }catch(e){}
+  }
+}
+boot();
+</script>
+</body>
+</html>
