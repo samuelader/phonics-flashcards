@@ -222,10 +222,16 @@
         <p class="note" id="setUnlocks"></p>
       </div>
 
-      <div class="pcard">
+      <div class=”pcard”>
         <h3>Sounds &amp; recordings</h3>
-        <p class="note">Tap a sound to record it. Say the <b>pure</b> sound — /t/, not “tuh”. Green = recorded.</p>
-        <div class="gpc-grid" id="gpcGrid"></div>
+        <p class=”note”>Tap a sound to record it. Say the <b>pure</b> sound — /t/, not “tuh”. Green = recorded.</p>
+        <div class=”gpc-grid” id=”gpcGrid”></div>
+      </div>
+
+      <div class=”pcard”>
+        <h3>Word recordings</h3>
+        <p class=”note”>Tap a word to record it. Say the whole word clearly. Green = recorded.</p>
+        <div class=”gpc-grid” id=”wordGrid”></div>
       </div>
 
       <div class="pcard">
@@ -525,6 +531,9 @@ async function playGrapheme(grapheme){
   const src=ctx.createBufferSource();
   src.buffer=buf; src.connect(ctx.destination); src.start();
 }
+async function playWord(wordText){
+  return playGrapheme("w:"+wordText);
+}
 // Robot voice: schedule sounds with a beat between them (Web Audio, tight timing)
 async function playRobot(graphemes){
   const ctx=audioCtx();
@@ -806,6 +815,11 @@ function renderBlend(item,card,foot){
   card.appendChild(w);
   const h=document.createElement("div"); h.className="hint"; h.textContent="Tap each sound, then say the word";
   card.appendChild(h);
+  if(RECORDED.has("w:"+item.id)){
+    const hear=document.createElement("button"); hear.className="play-mine"; hear.textContent="▶ Hear it";
+    hear.onclick=()=>playWord(item.id);
+    card.appendChild(hear);
+  }
   foot.appendChild(markBar(item, ok=>handleParentMark(item,ok)));
 }
 
@@ -907,7 +921,22 @@ function renderParent(){
   $("#setUnlocks").textContent="Sounds in this set: "+SET_UNLOCKS[P.currentSet];
   $("#rlLabel").textContent=P.settings.roundLength;
   renderGpcGrid();
+  renderWordGrid();
   renderModeToggles();
+}
+function renderWordGrid(){
+  const grid=$("#wordGrid"); grid.innerHTML="";
+  const words=WORDS.filter(w=>w.real && w.minSet<=P.currentSet);
+  words.forEach(w=>{
+    const key="w:"+w.id;
+    const rec=RECORDED.has(key);
+    const cell=document.createElement("button");
+    cell.className="gpc-cell"+(rec?" rec":"");
+    cell.innerHTML=`<div class="g" style="font-size:20px">${w.text}</div>
+      <div class="st">${rec?"🎙️":"—"}</div>`;
+    cell.onclick=()=>openWordRec(w);
+    grid.appendChild(cell);
+  });
 }
 function renderGpcGrid(){
   const grid=$("#gpcGrid"); grid.innerHTML="";
@@ -943,16 +972,24 @@ function renderModeToggles(){
 }
 
 /* ---------- Recording flow ---------- */
-let mediaRecorder=null, recChunks=[], recGrapheme=null, recMime="audio/mp4";
+let mediaRecorder=null, recChunks=[], recGrapheme=null, recMime="audio/mp4", recIsWord=false;
 function pickMime(){
   const cands=["audio/mp4","audio/webm","audio/webm;codecs=opus"];
   for(const c of cands){ if(window.MediaRecorder && MediaRecorder.isTypeSupported(c)) return c; }
   return "";
 }
 function openRec(g){
+  recIsWord=false;
   recGrapheme=g.id;
   $("#recGlyph").textContent=g.id;
   $("#recHint").textContent=`Hold the button and say /${g.id}/ — the pure sound (e.g. ${PIC[g.examplePicture]||g.examplePicture})`;
+  $("#recModal").classList.add("open");
+}
+function openWordRec(w){
+  recIsWord=true;
+  recGrapheme="w:"+w.id;
+  $("#recGlyph").textContent=w.text;
+  $("#recHint").textContent=`Hold the button and say the whole word: "${w.text}"`;
   $("#recModal").classList.add("open");
 }
 function closeRec(){ $("#recModal").classList.remove("open"); }
@@ -970,8 +1007,8 @@ async function startRecording(){
       await putAudio(recGrapheme,{blob,mime,recordedAt:Date.now()});
       bufferCache.delete(recGrapheme);
       await refreshRecorded();
-      renderGpcGrid();
-      toast("Saved /"+recGrapheme+"/");
+      if(recIsWord){ renderWordGrid(); toast("Saved \""+recGrapheme.slice(2)+"\""); }
+      else{ renderGpcGrid(); toast("Saved /"+recGrapheme+"/"); }
     };
     mediaRecorder.start();
     $("#holdBtn").classList.add("recording"); $("#holdBtn").textContent="Recording…";
@@ -1080,7 +1117,7 @@ function wire(){
   hold.addEventListener("pointerup",e=>{e.preventDefault();stopRecording();});
   hold.addEventListener("pointerleave",()=>stopRecording());
   hold.addEventListener("pointercancel",()=>stopRecording());
-  $("#recPlay").onclick=()=>playGrapheme(recGrapheme);
+  $("#recPlay").onclick=()=>playGrapheme(recGrapheme); // key is already "w:word" or grapheme
   $("#recClose").onclick=closeRec;
 
   // backup
