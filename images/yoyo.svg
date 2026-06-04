@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- String going up -->
+  <line x1="100" y1="30" x2="100" y2="92" stroke="#884422" stroke-width="3" stroke-linecap="round"/>
+  <!-- Finger loop at top -->
+  <path d="M88 30 Q100 20 112 30" fill="none" stroke="#884422" stroke-width="3" stroke-linecap="round"/>
+  <!-- Yoyo body left half -->
+  <path d="M60 115 Q60 88 100 88 L100 142 Q60 142 60 115 Z" fill="#ee2211" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Yoyo body right half -->
+  <path d="M140 115 Q140 88 100 88 L100 142 Q140 142 140 115 Z" fill="#cc1100" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Yoyo left disc -->
+  <ellipse cx="60" cy="115" rx="22" ry="28" fill="#ee2211" stroke="black" stroke-width="3"/>
+  <!-- Yoyo right disc -->
+  <ellipse cx="140" cy="115" rx="22" ry="28" fill="#cc1100" stroke="black" stroke-width="3"/>
+  <!-- Yoyo axle visible -->
+  <rect x="88" y="104" width="24" height="22" rx="5" fill="#ffcc00" stroke="black" stroke-width="2.5"/>
+  <!-- Decorative lines on disc -->
+  <ellipse cx="60" cy="115" rx="14" ry="18" fill="none" stroke="#ff4422" stroke-width="2"/>
+  <ellipse cx="140" cy="115" rx="14" ry="18" fill="none" stroke="#aa1100" stroke-width="2"/>
+  <!-- Disc shine -->
+  <ellipse cx="50" cy="105" rx="6" ry="9" fill="white" opacity="0.35"/>
+  <ellipse cx="130" cy="105" rx="6" ry="9" fill="white" opacity="0.25"/>
+</svg>

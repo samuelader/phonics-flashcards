@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Spinning top shape -->
+  <!-- Main cone body -->
+  <path d="M100 28 L158 118 Q100 130 42 118 Z" fill="#ee3311" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Lower cone -->
+  <path d="M42 118 Q100 130 158 118 L100 188 Z" fill="#2255ee" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Stripe on upper cone -->
+  <path d="M65 75 Q100 80 135 75" fill="none" stroke="#ffdd00" stroke-width="6" stroke-linecap="round"/>
+  <path d="M52 100 Q100 108 148 100" fill="none" stroke="#ffdd00" stroke-width="6" stroke-linecap="round"/>
+  <!-- Stripe on lower cone -->
+  <path d="M80 148 Q100 152 120 148" fill="none" stroke="#ffdd00" stroke-width="5" stroke-linecap="round"/>
+  <!-- Top handle/knob -->
+  <rect x="88" y="18" width="24" height="18" rx="8" fill="#cc9900" stroke="black" stroke-width="3"/>
+  <circle cx="100" cy="18" r="10" fill="#ffcc00" stroke="black" stroke-width="3"/>
+  <!-- Tip -->
+  <circle cx="100" cy="188" r="5" fill="#221100" stroke="black" stroke-width="2"/>
+  <!-- Spin lines -->
+  <path d="M28 140 Q20 148 28 155" fill="none" stroke="#aaaaaa" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M172 140 Q180 148 172 155" fill="none" stroke="#aaaaaa" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

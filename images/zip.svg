@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Jacket / fabric with zip -->
+  <!-- Left fabric panel -->
+  <path d="M25 50 L92 50 L92 170 L25 170 Q18 170 18 160 L18 60 Q18 50 25 50 Z" fill="#3355aa" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Right fabric panel -->
+  <path d="M108 50 L175 50 Q182 50 182 60 L182 160 Q182 170 175 170 L108 170 Z" fill="#3355aa" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Zip teeth left -->
+  <rect x="88" y="55" width="8" height="110" fill="#aaaaaa" stroke="#888888" stroke-width="1"/>
+  <!-- Zip teeth right -->
+  <rect x="104" y="55" width="8" height="110" fill="#aaaaaa" stroke="#888888" stroke-width="1"/>
+  <!-- Zip teeth marks -->
+  <line x1="88" y1="70" x2="96" y2="70" stroke="black" stroke-width="2"/>
+  <line x1="88" y1="82" x2="96" y2="82" stroke="black" stroke-width="2"/>
+  <line x1="88" y1="94" x2="96" y2="94" stroke="black" stroke-width="2"/>
+  <line x1="88" y1="106" x2="96" y2="106" stroke="black" stroke-width="2"/>
+  <line x1="88" y1="118" x2="96" y2="118" stroke="black" stroke-width="2"/>
+  <line x1="104" y1="76" x2="112" y2="76" stroke="black" stroke-width="2"/>
+  <line x1="104" y1="88" x2="112" y2="88" stroke="black" stroke-width="2"/>
+  <line x1="104" y1="100" x2="112" y2="100" stroke="black" stroke-width="2"/>
+  <line x1="104" y1="112" x2="112" y2="112" stroke="black" stroke-width="2"/>
+  <!-- Zip slider -->
+  <rect x="84" y="72" width="32" height="24" rx="6" fill="#ffcc00" stroke="black" stroke-width="3"/>
+  <!-- Zip pull tab -->
+  <rect x="95" y="55" width="10" height="20" rx="4" fill="#ffaa00" stroke="black" stroke-width="2.5"/>
+  <circle cx="100" cy="52" r="6" fill="#ffcc00" stroke="black" stroke-width="2.5"/>
+</svg>
