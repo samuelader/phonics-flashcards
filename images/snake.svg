@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Coiled body -->
+  <path d="M40 150 Q100 120 160 150 Q170 110 110 100 Q40 90 50 60 Q60 35 110 45" fill="none" stroke="#3fbf4f" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M40 150 Q100 120 160 150 Q170 110 110 100 Q40 90 50 60 Q60 35 110 45" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Belly spots -->
+  <circle cx="80" cy="138" r="4" fill="#9be8a0"/>
+  <circle cx="120" cy="140" r="4" fill="#9be8a0"/>
+  <circle cx="150" cy="125" r="4" fill="#9be8a0"/>
+  <!-- Head -->
+  <ellipse cx="118" cy="42" rx="22" ry="18" fill="#3fbf4f" stroke="black" stroke-width="3"/>
+  <!-- Eyes -->
+  <circle cx="112" cy="36" r="6" fill="white" stroke="black" stroke-width="2"/>
+  <circle cx="128" cy="36" r="6" fill="white" stroke="black" stroke-width="2"/>
+  <circle cx="112" cy="37" r="2.5" fill="black"/>
+  <circle cx="128" cy="37" r="2.5" fill="black"/>
+  <!-- Smile -->
+  <path d="M108 50 Q118 56 130 50" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Forked tongue -->
+  <path d="M118 56 Q118 70 112 76 M118 70 Q118 76 124 80" fill="none" stroke="#ff4d6d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

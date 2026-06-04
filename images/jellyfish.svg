@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Tentacles -->
+  <g fill="none" stroke="#d96bd6" stroke-width="6" stroke-linecap="round">
+    <path d="M68 100 Q60 130 70 150 Q78 168 68 185"/>
+    <path d="M84 105 Q80 135 88 158 Q94 175 86 188"/>
+    <path d="M100 108 Q98 140 100 165 Q101 180 100 190"/>
+    <path d="M116 105 Q120 135 112 158 Q106 175 114 188"/>
+    <path d="M132 100 Q140 130 130 150 Q122 168 132 185"/>
+  </g>
+  <!-- Bell -->
+  <path d="M44 100 Q44 40 100 40 Q156 40 156 100 Q140 112 124 100 Q108 112 92 100 Q76 112 60 100 Q52 104 44 100 Z" fill="#c655c6" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Highlights -->
+  <ellipse cx="78" cy="68" rx="10" ry="16" fill="#f0a8f0" opacity="0.7"/>
+  <!-- Eyes -->
+  <circle cx="86" cy="80" r="7" fill="white" stroke="black" stroke-width="2"/>
+  <circle cx="114" cy="80" r="7" fill="white" stroke="black" stroke-width="2"/>
+  <circle cx="87" cy="81" r="3" fill="black"/>
+  <circle cx="115" cy="81" r="3" fill="black"/>
+  <!-- Smile -->
+  <path d="M88 92 Q100 100 112 92" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
