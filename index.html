@@ -168,7 +168,7 @@
   <section id="home" class="screen active">
     <div class="gear" id="gear"><div class="ring"></div>⚙️</div>
     <div class="center">
-      <div class="title">Phonics</div>
+      <div class="title" id="homeTitle">Phonics</div>
       <div class="sub" id="homeSub">Set 1</div>
       <button class="play" id="playBtn"><span class="emoji">▶️</span><span>Play</span></button>
       <div class="row">
@@ -188,7 +188,7 @@
   <section id="done" class="screen">
     <div class="center">
       <div class="cheer" style="font-size:120px" id="doneEmoji">🎉</div>
-      <div class="title">Great job!</div>
+      <div class="title" id="doneTitle">Great job!</div>
       <div class="pill" id="stickerEarned">⭐ New sticker!</div>
       <div class="row">
         <button class="big-btn" id="againBtn">Play again</button>
@@ -210,6 +210,11 @@
   <section id="parent" class="screen">
     <div class="head"><h2>Parent</h2><button class="big-btn ghost back" data-go="home">Done</button></div>
     <div class="scroll">
+
+      <div class="pcard">
+        <h3>Child's name</h3>
+        <input id="childNameInput" type="text" style="font-size:20px;padding:8px 12px;border-radius:10px;border:2px solid #e2e9f3;width:100%;box-sizing:border-box" maxlength="20" />
+      </div>
 
       <div class="pcard">
         <h3>Current set</h3>
@@ -445,6 +450,7 @@ function defaultProgress(){
   return {
     currentSet:1, currentRound:1, items:{},
     stickers:0, medals:[],
+    childName:"Artie",
     settings:{ modesEnabled:["say","find","blend","robot","treasure"], roundLength:8 }
   };
 }
@@ -660,7 +666,11 @@ const $ = sel=>document.querySelector(sel);
 const $$ = sel=>document.querySelectorAll(sel);
 
 function renderHome(){
+  const name = P.childName||"";
+  $("#homeTitle").textContent = name ? name+"'s Phonics" : "Phonics";
   $("#homeSub").textContent = "Set "+P.currentSet;
+  $("#stickerBtn").textContent = "⭐ "+ (name ? name+"'s Stickers" : "Stickers");
+  document.querySelector("#stickers .head h2").textContent = "⭐ "+ (name ? name+"'s Stickers" : "My Stickers");
 }
 
 /* ---------- Feedback fx ---------- */
@@ -888,6 +898,11 @@ function finishRound(){
   show("done");
   confetti();
   $("#doneEmoji").textContent = ["🎉","🥳","🌈","🎈","⭐"][Math.floor(Math.random()*5)];
+  const name = P.childName||"";
+  const cheers = name
+    ? [`Amazing, ${name}!`,`Brilliant, ${name}!`,`Well done, ${name}!`,`Superstar ${name}!`,`You're a star, ${name}!`]
+    : ["Amazing!","Brilliant!","Well done!","Superstar!","You're a star!"];
+  $("#doneTitle").textContent = cheers[Math.floor(Math.random()*cheers.length)];
   $("#stickerEarned").textContent = "⭐ Sticker "+P.stickers+"!";
   goodSound(); setTimeout(goodSound,200);
   renderHome();
@@ -930,6 +945,7 @@ function renderStickers(){
 /* ---------- Parent panel ---------- */
 function openParent(){ renderParent(); show("parent"); }
 function renderParent(){
+  $("#childNameInput").value=P.childName||"";
   $("#setLabel").textContent="Set "+P.currentSet;
   $("#setUnlocks").textContent="Sounds in this set: "+SET_UNLOCKS[P.currentSet];
   $("#rlLabel").textContent=P.settings.roundLength;
@@ -1119,6 +1135,7 @@ function wire(){
   gear.addEventListener("pointercancel",gateEnd);
 
   // set stepper
+  $("#childNameInput").oninput=()=>{ P.childName=$("#childNameInput").value.trim(); saveProgress(); renderHome(); };
   $("#setUp").onclick=()=>{ if(P.currentSet<CONFIG.MAX_SET){ P.currentSet++; saveProgress(); renderParent(); renderHome(); toast("Set "+P.currentSet+" unlocked 🎉"); } };
   $("#setDown").onclick=()=>{ if(P.currentSet>1){ P.currentSet--; saveProgress(); renderParent(); renderHome(); } };
   $("#rlUp").onclick=()=>{ if(P.settings.roundLength<14){ P.settings.roundLength++; saveProgress(); renderParent(); } };
