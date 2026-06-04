@@ -307,15 +307,15 @@ const ROBOT_GAP = 0.5; // seconds between sounds in Robot voice
 // GPCs in Little Wandle order. examplePicture is a word -> emoji via PIC.
 const GPCS = [
   // set 1
-  {id:"s",set:1,type:"single",examplePicture:"sun"},
-  {id:"a",set:1,type:"single",examplePicture:"ant"},
-  {id:"t",set:1,type:"single",examplePicture:"tap"},
-  {id:"p",set:1,type:"single",examplePicture:"pan"},
+  {id:"s",set:1,type:"single",examplePicture:"snake"},
+  {id:"a",set:1,type:"single",examplePicture:"astronaut"},
+  {id:"t",set:1,type:"single",examplePicture:"tiger"},
+  {id:"p",set:1,type:"single",examplePicture:"penguin"},
   // set 2
-  {id:"i",set:2,type:"single",examplePicture:"insect"},
+  {id:"i",set:2,type:"single",examplePicture:"iguana"},
   {id:"n",set:2,type:"single",examplePicture:"net"},
-  {id:"m",set:2,type:"single",examplePicture:"map"},
-  {id:"d",set:2,type:"single",examplePicture:"dog"},
+  {id:"m",set:2,type:"single",examplePicture:"mouse"},
+  {id:"d",set:2,type:"single",examplePicture:"duck"},
   // set 3
   {id:"g",set:3,type:"single",examplePicture:"goat"},
   {id:"o",set:3,type:"single",examplePicture:"octopus"},
@@ -323,30 +323,30 @@ const GPCS = [
   {id:"k",set:3,type:"single",examplePicture:"kite"},
   // set 4
   {id:"ck",set:4,type:"digraph",examplePicture:"duck"},
-  {id:"e",set:4,type:"single",examplePicture:"egg"},
+  {id:"e",set:4,type:"single",examplePicture:"elephant"},
   {id:"u",set:4,type:"single",examplePicture:"umbrella"},
-  {id:"r",set:4,type:"single",examplePicture:"rabbit"},
+  {id:"r",set:4,type:"single",examplePicture:"rainbow"},
   // set 5
-  {id:"h",set:5,type:"single",examplePicture:"hat"},
-  {id:"b",set:5,type:"single",examplePicture:"bus"},
-  {id:"f",set:5,type:"single",examplePicture:"fish"},
-  {id:"l",set:5,type:"single",examplePicture:"leg"},
+  {id:"h",set:5,type:"single",examplePicture:"helicopter"},
+  {id:"b",set:5,type:"single",examplePicture:"bear"},
+  {id:"f",set:5,type:"single",examplePicture:"flamingo"},
+  {id:"l",set:5,type:"single",examplePicture:"lollipop"},
   // set 6
   {id:"ff",set:6,type:"double",examplePicture:"puff"},
   {id:"ll",set:6,type:"double",examplePicture:"bell"},
   {id:"ss",set:6,type:"double",examplePicture:"hiss"},
-  {id:"j",set:6,type:"single",examplePicture:"jam"},
+  {id:"j",set:6,type:"single",examplePicture:"jellyfish"},
   // set 7
-  {id:"v",set:7,type:"single",examplePicture:"van"},
-  {id:"w",set:7,type:"single",examplePicture:"web"},
+  {id:"v",set:7,type:"single",examplePicture:"volcano"},
+  {id:"w",set:7,type:"single",examplePicture:"waves"},
   {id:"x",set:7,type:"single",examplePicture:"fox"},
   {id:"y",set:7,type:"single",examplePicture:"yoyo"},
-  // set 8
-  {id:"z",set:8,type:"single",examplePicture:"zip"},
+  // set 8 — LWLSR Autumn 2 Week 3 groups ch with z, zz, qu
+  {id:"z",set:8,type:"single",examplePicture:"zigzag"},
   {id:"zz",set:8,type:"double",examplePicture:"buzz"},
   {id:"qu",set:8,type:"digraph",examplePicture:"queen"},
+  {id:"ch",set:8,type:"digraph",examplePicture:"chips"},
   // set 9
-  {id:"ch",set:9,type:"digraph",examplePicture:"chips"},
   {id:"sh",set:9,type:"digraph",examplePicture:"ship"},
   {id:"th",set:9,type:"digraph",examplePicture:"thumb"},
   {id:"ng",set:9,type:"digraph",examplePicture:"ring"},
@@ -370,6 +370,10 @@ const PIC = {
   pin:"📌",tin:"🥫",man:"🧍",pot:"🍲",top:"🔝",can:"🥫",sun2:"☀️",cup:"☕",
   run:"🏃",red:"🟥",sock:"🧦",bed:"🛏️",hen:"🐔",bat:"🦇",fan:"🪭",lip:"👄",
   jet:"✈️",six:"6️⃣",quiz:"❓",zap:"⚡",shop:"🏪",chip:"🍟",
+  // LWLSR keyword pictures
+  snake:"🐍",astronaut:"🧑‍🚀",tiger:"🐯",penguin:"🐧",iguana:"🦎",mouse:"🐭",
+  elephant:"🐘",rainbow:"🌈",helicopter:"🚁",bear:"🐻",flamingo:"🦩",lollipop:"🍭",
+  jellyfish:"🪼",volcano:"🌋",waves:"🌊",zigzag:"〽️",
 };
 
 // Decodable words. minSet computed from graphemes. picture = key in PIC (or null).
@@ -440,7 +444,7 @@ const ALL_WORDS = WORDS.concat(TRICKY);
 
 const SET_UNLOCKS = {
   1:"s a t p", 2:"i n m d", 3:"g o c k", 4:"ck e u r", 5:"h b f l",
-  6:"ff ll ss j", 7:"v w x y", 8:"z zz qu", 9:"ch sh th ng nk"
+  6:"ff ll ss j", 7:"v w x y", 8:"z zz qu ch", 9:"sh th ng nk"
 };
 const MODE_LABELS = {say:"Say it",find:"Find it",blend:"Blend it",robot:"Robot voice",treasure:"Treasure or trash"};
 
