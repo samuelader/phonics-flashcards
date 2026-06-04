@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Crisp bag -->
+  <!-- Bag body -->
+  <path d="M65 75 Q60 55 80 45 L120 45 Q140 55 135 75 L148 155 Q148 168 135 170 L65 170 Q52 168 52 155 Z" 
+        fill="#ee2211" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Bag top seal -->
+  <ellipse cx="100" cy="45" rx="22" ry="10" fill="#cc1100" stroke="black" stroke-width="3"/>
+  <!-- Bag label area -->
+  <ellipse cx="100" cy="115" rx="38" ry="44" fill="#ffdd00" stroke="black" stroke-width="2.5"/>
+  <!-- Chips on label -->
+  <path d="M78 100 Q75 88 88 84 Q100 80 108 88 Q116 96 110 106 Q104 116 90 114 Q76 112 78 100Z" fill="#f5c842" stroke="black" stroke-width="2"/>
+  <path d="M92 118 Q88 106 100 103 Q113 100 118 110 Q122 120 112 126 Q100 132 92 118Z" fill="#f5c842" stroke="black" stroke-width="2"/>
+  <path d="M76 118 Q72 108 82 105 Q93 102 96 111 Q99 120 89 124 Q78 127 76 118Z" fill="#f5c842" stroke="black" stroke-width="2"/>
+  <!-- Bottom seal -->
+  <ellipse cx="100" cy="168" rx="35" ry="8" fill="#cc1100" stroke="black" stroke-width="2.5"/>
+</svg>

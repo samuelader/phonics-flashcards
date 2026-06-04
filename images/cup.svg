@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Cup body -->
+  <path d="M60 65 L68 158 Q68 165 100 165 Q132 165 132 158 L140 65 Z" 
+        fill="#2299ee" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Cup rim -->
+  <ellipse cx="100" cy="65" rx="40" ry="10" fill="#1188dd" stroke="black" stroke-width="3"/>
+  <!-- Handle -->
+  <path d="M132 100 Q165 100 165 125 Q165 150 132 148" fill="none" stroke="black" stroke-width="8" stroke-linecap="round"/>
+  <path d="M132 100 Q158 100 158 125 Q158 148 132 148" fill="none" stroke="#2299ee" stroke-width="4" stroke-linecap="round"/>
+  <!-- Polka dots decoration -->
+  <circle cx="85" cy="100" r="8" fill="#ffdd00" stroke="black" stroke-width="2"/>
+  <circle cx="112" cy="95" r="8" fill="#ffdd00" stroke="black" stroke-width="2"/>
+  <circle cx="92" cy="125" r="8" fill="#ffdd00" stroke="black" stroke-width="2"/>
+  <circle cx="118" cy="125" r="7" fill="#ffdd00" stroke="black" stroke-width="2"/>
+</svg>
