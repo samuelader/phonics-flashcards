@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Hat brim -->
+  <ellipse cx="100" cy="140" rx="72" ry="18" fill="#cc2200" stroke="black" stroke-width="3"/>
+  <!-- Hat body -->
+  <rect x="58" y="60" width="84" height="82" rx="6" fill="#cc2200" stroke="black" stroke-width="3"/>
+  <!-- Hat top -->
+  <ellipse cx="100" cy="60" rx="42" ry="12" fill="#aa1100" stroke="black" stroke-width="3"/>
+  <!-- Hat band -->
+  <rect x="58" y="118" width="84" height="16" rx="3" fill="#ffdd00" stroke="black" stroke-width="2.5"/>
+  <!-- Band buckle -->
+  <rect x="88" y="116" width="24" height="20" rx="3" fill="#ffcc00" stroke="black" stroke-width="2.5"/>
+  <rect x="93" y="120" width="14" height="12" rx="2" fill="none" stroke="black" stroke-width="2"/>
+  <!-- Hat shine -->
+  <ellipse cx="78" cy="85" rx="8" ry="18" fill="#ee3322" opacity="0.5" transform="rotate(-10,78,85)"/>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Pan handle -->
+  <rect x="135" y="100" width="55" height="18" rx="8" fill="#554433" stroke="black" stroke-width="3"/>
+  <!-- Pan body -->
+  <ellipse cx="90" cy="120" rx="68" ry="18" fill="#888888" stroke="black" stroke-width="3"/>
+  <!-- Pan sides (short) -->
+  <rect x="22" y="95" width="136" height="28" rx="6" fill="#999999" stroke="black" stroke-width="3"/>
+  <!-- Pan rim top -->
+  <ellipse cx="90" cy="95" rx="68" ry="18" fill="#aaaaaa" stroke="black" stroke-width="3"/>
+  <!-- Egg in pan -->
+  <ellipse cx="85" cy="100" rx="36" ry="12" fill="white" stroke="none"/>
+  <circle cx="85" cy="99" r="10" fill="#ffcc00" stroke="none"/>
+  <!-- Pan shine -->
+  <ellipse cx="50" cy="98" rx="12" ry="5" fill="white" opacity="0.4" transform="rotate(-15,50,98)"/>
+</svg>

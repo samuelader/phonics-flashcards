@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Kite diamond -->
+  <polygon points="100,20 160,90 100,155 40,90" fill="#ee2211" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Kite cross lines -->
+  <line x1="100" y1="20" x2="100" y2="155" stroke="black" stroke-width="2"/>
+  <line x1="40" y1="90" x2="160" y2="90" stroke="black" stroke-width="2"/>
+  <!-- Kite quarters -->
+  <polygon points="100,20 160,90 100,90" fill="#ffdd00" stroke="none"/>
+  <polygon points="100,90 160,90 100,155" fill="#ee2211" stroke="none"/>
+  <polygon points="100,20 40,90 100,90" fill="#ee2211" stroke="none"/>
+  <polygon points="100,90 40,90 100,155" fill="#ffdd00" stroke="none"/>
+  <!-- Outline again -->
+  <polygon points="100,20 160,90 100,155 40,90" fill="none" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <line x1="100" y1="20" x2="100" y2="155" stroke="black" stroke-width="2"/>
+  <line x1="40" y1="90" x2="160" y2="90" stroke="black" stroke-width="2"/>
+  <!-- String -->
+  <path d="M100 155 Q115 168 108 180 Q100 188 112 195" fill="none" stroke="#884400" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Tail bows -->
+  <ellipse cx="104" cy="163" rx="10" ry="5" fill="#ee2211" stroke="black" stroke-width="2" transform="rotate(30,104,163)"/>
+  <ellipse cx="110" cy="175" rx="10" ry="5" fill="#2255ee" stroke="black" stroke-width="2" transform="rotate(-20,110,175)"/>
+  <ellipse cx="114" cy="188" rx="10" ry="5" fill="#22bb44" stroke="black" stroke-width="2" transform="rotate(15,114,188)"/>
+</svg>

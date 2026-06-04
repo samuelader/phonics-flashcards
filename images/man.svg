@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Body / shirt -->
+  <path d="M68 105 L60 170 L85 170 L100 135 L115 170 L140 170 L132 105 Z" fill="#3388ee" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Head -->
+  <circle cx="100" cy="68" r="28" fill="#ffcc99" stroke="black" stroke-width="3"/>
+  <!-- Hair -->
+  <path d="M72 60 Q75 38 100 36 Q125 38 128 60 Q120 45 100 44 Q80 45 72 60 Z" fill="#663300" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Eyes -->
+  <circle cx="90" cy="65" r="4" fill="#331100"/>
+  <circle cx="110" cy="65" r="4" fill="#331100"/>
+  <!-- Smile -->
+  <path d="M88 78 Q100 88 112 78" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Neck -->
+  <rect x="90" y="93" width="20" height="14" rx="5" fill="#ffcc99" stroke="black" stroke-width="2.5"/>
+  <!-- Collar -->
+  <path d="M68 105 L90 107 L100 118 L110 107 L132 105" fill="none" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Buttons -->
+  <circle cx="100" cy="128" r="3" fill="white" stroke="black" stroke-width="1.5"/>
+  <circle cx="100" cy="142" r="3" fill="white" stroke="black" stroke-width="1.5"/>
+  <!-- Arms -->
+  <path d="M68 110 L45 138 L50 142 L72 116" fill="#3388ee" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M132 110 L155 138 L150 142 L128 116" fill="#3388ee" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Hands -->
+  <circle cx="48" cy="140" r="9" fill="#ffcc99" stroke="black" stroke-width="2.5"/>
+  <circle cx="152" cy="140" r="9" fill="#ffcc99" stroke="black" stroke-width="2.5"/>
+  <!-- Trousers -->
+  <path d="M60 168 L58 195 L92 195 L100 172 L108 195 L142 195 L140 168 Z" fill="#224488" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Shoes -->
+  <ellipse cx="72" cy="195" rx="16" ry="7" fill="#221100" stroke="black" stroke-width="2.5"/>
+  <ellipse cx="128" cy="195" rx="16" ry="7" fill="#221100" stroke="black" stroke-width="2.5"/>
+</svg>

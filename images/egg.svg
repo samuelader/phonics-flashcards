@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Egg -->
+  <path d="M100 30 Q145 30 155 90 Q165 140 140 168 Q120 188 100 188 Q80 188 60 168 Q35 140 45 90 Q55 30 100 30 Z" 
+        fill="#fff9e0" stroke="black" stroke-width="3.5"/>
+  <!-- Egg shine -->
+  <ellipse cx="78" cy="75" rx="12" ry="22" fill="white" opacity="0.5" transform="rotate(-20,78,75)"/>
+  <!-- Crack -->
+  <path d="M85 100 L95 88 L100 98 L112 84 L118 95" fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Yolk peeking out -->
+  <circle cx="100" cy="108" r="20" fill="#ffcc00" stroke="black" stroke-width="2.5"/>
+  <!-- Egg white showing -->
+  <path d="M80 108 Q85 125 100 128 Q115 125 120 108" fill="#fffde0" stroke="none"/>
+</svg>

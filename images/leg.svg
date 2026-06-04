@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Trouser leg -->
+  <path d="M75 20 L65 130 Q62 145 70 155 L95 160 L100 130 L105 160 L130 155 Q138 145 135 130 L125 20 Z" 
+        fill="#3355aa" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Trouser crease -->
+  <line x1="100" y1="20" x2="100" y2="130" stroke="#2244880" stroke-width="2" stroke-dasharray="6,4"/>
+  <!-- Knee shape -->
+  <ellipse cx="100" cy="105" rx="28" ry="18" fill="#2244aa" stroke="none"/>
+  <!-- Lower leg -->
+  <path d="M70 155 L68 185 Q68 193 82 193 L100 193 L118 193 Q132 193 132 185 L130 155 Z" 
+        fill="#ffcc88" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Sock -->
+  <path d="M70 170 L68 185 Q68 193 82 193 L118 193 Q132 193 132 185 L130 170 Z" 
+        fill="#ee2211" stroke="black" stroke-width="2.5"/>
+  <!-- Shoe -->
+  <path d="M68 188 Q65 196 60 198 Q80 200 100 200 Q130 200 138 198 Q138 192 132 188 Z" 
+        fill="#221100" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>

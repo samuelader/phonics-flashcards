@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Upper lip -->
+  <path d="M35 85 Q55 72 80 78 Q100 65 120 78 Q145 72 165 85 Q145 100 100 98 Q55 100 35 85 Z" 
+        fill="#ee3366" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Cupid's bow highlight -->
+  <path d="M75 80 Q100 68 125 80" fill="none" stroke="#ff6699" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Lower lip -->
+  <path d="M35 88 Q55 100 100 110 Q145 100 165 88 Q145 122 100 128 Q55 122 35 88 Z" 
+        fill="#ee3366" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Lower lip highlight -->
+  <ellipse cx="100" cy="118" rx="30" ry="7" fill="#ff6699" opacity="0.5"/>
+  <!-- Mouth line between lips -->
+  <path d="M35 88 Q100 95 165 88" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

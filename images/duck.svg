@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Body -->
+  <ellipse cx="100" cy="145" rx="52" ry="38" fill="#ffee44" stroke="black" stroke-width="3"/>
+  <!-- Wing -->
+  <ellipse cx="88" cy="148" rx="30" ry="18" fill="#eecc22" stroke="black" stroke-width="2.5" transform="rotate(-10,88,148)"/>
+  <!-- Head -->
+  <circle cx="138" cy="95" r="26" fill="#ffee44" stroke="black" stroke-width="3"/>
+  <!-- Bill -->
+  <ellipse cx="162" cy="100" rx="16" ry="8" fill="#ff9922" stroke="black" stroke-width="3"/>
+  <!-- Nostril -->
+  <circle cx="164" cy="98" r="2.5" fill="#cc7700"/>
+  <!-- Eye -->
+  <circle cx="148" cy="88" r="6" fill="black" stroke="black" stroke-width="1"/>
+  <circle cx="146" cy="86" r="2" fill="white"/>
+  <!-- Neck -->
+  <path d="M125 112 Q118 125 106 130" fill="none" stroke="#ffee44" stroke-width="14" stroke-linecap="round"/>
+  <path d="M125 112 Q118 125 106 130" fill="none" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <!-- Water ripples -->
+  <ellipse cx="100" cy="180" rx="55" ry="8" fill="#66bbff" stroke="black" stroke-width="2"/>
+  <path d="M55 177 Q75 172 100 175 Q125 178 145 173" fill="none" stroke="black" stroke-width="2" stroke-linecap="round"/>
+  <!-- Feet hint -->
+  <path d="M80 175 Q72 185 60 183 Q58 186 68 188 Q80 190 88 180" fill="#ff9922" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+</svg>

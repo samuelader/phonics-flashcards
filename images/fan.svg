@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Fan handle -->
+  <rect x="93" y="148" width="14" height="42" rx="6" fill="#996633" stroke="black" stroke-width="3"/>
+  <!-- Fan blades base circle -->
+  <circle cx="100" cy="105" r="12" fill="#cccccc" stroke="black" stroke-width="3"/>
+  <!-- Fan blades -->
+  <path d="M100 93 Q88 65 100 48 Q112 65 100 93 Z" fill="#44aaff" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M88 113 Q60 108 50 95 Q70 88 88 113 Z" fill="#44aaff" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M112 113 Q140 108 150 95 Q130 88 112 113 Z" fill="#44aaff" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M93 120 Q80 148 68 155 Q72 138 93 120 Z" fill="#44aaff" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M107 120 Q120 148 132 155 Q128 138 107 120 Z" fill="#44aaff" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Center hub -->
+  <circle cx="100" cy="105" r="10" fill="#888888" stroke="black" stroke-width="2.5"/>
+  <circle cx="100" cy="105" r="5" fill="#555555" stroke="black" stroke-width="2"/>
+  <!-- Air lines -->
+  <path d="M155 70 Q170 65 175 75" fill="none" stroke="#aaddff" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M158 85 Q175 85 178 97" fill="none" stroke="#aaddff" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

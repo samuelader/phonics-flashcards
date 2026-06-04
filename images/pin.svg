@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Pin shaft -->
+  <rect x="97" y="75" width="6" height="115" rx="2" fill="#cccccc" stroke="black" stroke-width="2.5"/>
+  <!-- Pin tip -->
+  <polygon points="97,188 103,188 100,198" fill="#aaaaaa" stroke="black" stroke-width="2"/>
+  <!-- Pin head ball -->
+  <circle cx="100" cy="55" r="22" fill="#ee2211" stroke="black" stroke-width="3"/>
+  <!-- Shine on head -->
+  <circle cx="91" cy="46" r="7" fill="#ff6655" opacity="0.7"/>
+</svg>

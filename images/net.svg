@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Net handle -->
+  <rect x="94" y="148" width="12" height="48" rx="5" fill="#996633" stroke="black" stroke-width="3"/>
+  <!-- Net hoop -->
+  <circle cx="100" cy="100" r="55" fill="none" stroke="#553311" stroke-width="6"/>
+  <ellipse cx="100" cy="100" rx="55" ry="55" fill="none" stroke="black" stroke-width="3"/>
+  <!-- Net mesh (vertical strings) -->
+  <line x1="67" y1="50" x2="60" y2="152" stroke="#884422" stroke-width="2" opacity="0.8"/>
+  <line x1="81" y1="46" x2="76" y2="154" stroke="#884422" stroke-width="2" opacity="0.8"/>
+  <line x1="100" y1="45" x2="100" y2="155" stroke="#884422" stroke-width="2" opacity="0.8"/>
+  <line x1="119" y1="46" x2="124" y2="154" stroke="#884422" stroke-width="2" opacity="0.8"/>
+  <line x1="133" y1="50" x2="140" y2="152" stroke="#884422" stroke-width="2" opacity="0.8"/>
+  <!-- Net mesh (horizontal strings) -->
+  <path d="M47 80 Q100 77 153 80" fill="none" stroke="#884422" stroke-width="2" opacity="0.8"/>
+  <path d="M46 100 Q100 97 154 100" fill="none" stroke="#884422" stroke-width="2" opacity="0.8"/>
+  <path d="M50 120 Q100 117 150 120" fill="none" stroke="#884422" stroke-width="2" opacity="0.8"/>
+  <path d="M58 140 Q100 137 142 140" fill="none" stroke="#884422" stroke-width="2" opacity="0.8"/>
+  <!-- Hoop again on top -->
+  <circle cx="100" cy="100" r="55" fill="none" stroke="black" stroke-width="3"/>
+  <!-- Connection to handle -->
+  <line x1="100" y1="155" x2="100" y2="148" stroke="black" stroke-width="4" stroke-linecap="round"/>
+</svg>

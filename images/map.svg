@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Map paper (slightly rolled) -->
+  <path d="M25 45 Q30 40 40 42 L160 35 Q170 35 172 45 L175 158 Q175 165 165 162 L40 168 Q28 168 25 158 Z" 
+        fill="#f5e9c0" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Map fold lines -->
+  <line x1="80" y1="38" x2="78" y2="165" stroke="#ddcca0" stroke-width="2"/>
+  <line x1="130" y1="36" x2="128" y2="164" stroke="#ddcca0" stroke-width="2"/>
+  <line x1="27" y1="95" x2="174" y2="90" stroke="#ddcca0" stroke-width="2"/>
+  <line x1="27" y1="130" x2="174" y2="128" stroke="#ddcca0" stroke-width="2"/>
+  <!-- Mountains -->
+  <polygon points="45,120 60,88 75,120" fill="#88aa66" stroke="black" stroke-width="2"/>
+  <polygon points="58,120 75,82 92,120" fill="#669944" stroke="black" stroke-width="2"/>
+  <!-- River / road -->
+  <path d="M95 145 Q110 130 108 110 Q106 95 120 80" fill="none" stroke="#44aaff" stroke-width="5" stroke-linecap="round"/>
+  <!-- Forest dots -->
+  <circle cx="148" cy="100" r="10" fill="#44aa33" stroke="black" stroke-width="2"/>
+  <circle cx="162" cy="95" r="8" fill="#44aa33" stroke="black" stroke-width="2"/>
+  <circle cx="155" cy="112" r="9" fill="#44aa33" stroke="black" stroke-width="2"/>
+  <!-- X marks the spot -->
+  <line x1="126" y1="140" x2="140" y2="155" stroke="#cc2200" stroke-width="4" stroke-linecap="round"/>
+  <line x1="140" y1="140" x2="126" y2="155" stroke="#cc2200" stroke-width="4" stroke-linecap="round"/>
+  <!-- Compass rose -->
+  <circle cx="50" cy="55" r="10" fill="white" stroke="black" stroke-width="2"/>
+  <polygon points="50,44 53,55 50,56 47,55" fill="#cc2200" stroke="none"/>
+  <polygon points="50,66 53,55 50,54 47,55" fill="#888" stroke="none"/>
+</svg>
