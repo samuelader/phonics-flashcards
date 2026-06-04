@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Tap / faucet body -->
+  <!-- Pipe coming from wall -->
+  <rect x="25" y="88" width="60" height="24" rx="8" fill="#cccccc" stroke="black" stroke-width="3"/>
+  <!-- Valve body -->
+  <rect x="75" y="78" width="50" height="44" rx="10" fill="#aaaaaa" stroke="black" stroke-width="3"/>
+  <!-- Handle cross -->
+  <rect x="88" y="65" width="24" height="14" rx="5" fill="#888888" stroke="black" stroke-width="2.5"/>
+  <rect x="82" y="68" width="36" height="8" rx="4" fill="#888888" stroke="black" stroke-width="2.5"/>
+  <!-- Handle knob -->
+  <circle cx="100" cy="66" r="7" fill="#777777" stroke="black" stroke-width="2.5"/>
+  <!-- Spout elbow -->
+  <path d="M125 100 Q148 100 148 125" fill="none" stroke="#bbbbbb" stroke-width="22" stroke-linecap="round"/>
+  <path d="M125 100 Q148 100 148 125" fill="none" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <!-- Spout opening -->
+  <ellipse cx="148" cy="126" rx="10" ry="6" fill="#aaaaaa" stroke="black" stroke-width="2.5"/>
+  <!-- Water drops -->
+  <path d="M144 132 Q140 142 143 150 Q146 158 143 166" fill="none" stroke="#44aaff" stroke-width="5" stroke-linecap="round"/>
+  <path d="M152 134 Q155 145 153 155 Q151 163 154 170" fill="none" stroke="#44aaff" stroke-width="4" stroke-linecap="round"/>
+  <!-- Shine on tap -->
+  <ellipse cx="90" cy="88" rx="8" ry="14" fill="white" opacity="0.3" transform="rotate(-10,90,88)"/>
+</svg>

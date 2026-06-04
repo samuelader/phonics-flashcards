@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Sock leg -->
+  <rect x="68" y="30" width="64" height="90" rx="20" fill="#ee2244" stroke="black" stroke-width="3"/>
+  <!-- Sock ribbing at top -->
+  <rect x="68" y="30" width="64" height="25" rx="15" fill="#cc1133" stroke="black" stroke-width="3"/>
+  <!-- Ribbing lines -->
+  <line x1="68" y1="40" x2="132" y2="40" stroke="#ee3355" stroke-width="2"/>
+  <line x1="68" y1="48" x2="132" y2="48" stroke="#ee3355" stroke-width="2"/>
+  <!-- Heel -->
+  <path d="M68 118 Q50 122 48 140 Q48 158 68 160" fill="#cc1133" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Foot -->
+  <path d="M68 118 L68 160 Q68 172 80 175 L130 175 Q148 175 148 158 Q148 140 132 138 L132 118 Z" 
+        fill="#ee2244" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Toe -->
+  <ellipse cx="130" cy="160" rx="20" ry="14" fill="#cc1133" stroke="black" stroke-width="3"/>
+  <!-- Stripe decoration -->
+  <line x1="68" y1="80" x2="132" y2="80" stroke="#ffdd00" stroke-width="5"/>
+  <line x1="68" y1="92" x2="132" y2="92" stroke="#ffdd00" stroke-width="5"/>
+</svg>

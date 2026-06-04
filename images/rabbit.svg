@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Body -->
+  <ellipse cx="100" cy="148" rx="42" ry="38" fill="#eeeeee" stroke="black" stroke-width="3"/>
+  <!-- Tummy -->
+  <ellipse cx="100" cy="155" rx="26" ry="24" fill="#ffddcc" stroke="none"/>
+  <!-- Head -->
+  <circle cx="100" cy="90" r="32" fill="#eeeeee" stroke="black" stroke-width="3"/>
+  <!-- Ears -->
+  <ellipse cx="82" cy="50" rx="12" ry="32" fill="#eeeeee" stroke="black" stroke-width="3"/>
+  <ellipse cx="118" cy="50" rx="12" ry="32" fill="#eeeeee" stroke="black" stroke-width="3"/>
+  <!-- Inner ears -->
+  <ellipse cx="82" cy="50" rx="6" ry="24" fill="#ffaaaa" stroke="none"/>
+  <ellipse cx="118" cy="50" rx="6" ry="24" fill="#ffaaaa" stroke="none"/>
+  <!-- Eyes -->
+  <circle cx="88" cy="86" r="6" fill="#ff5588" stroke="black" stroke-width="2"/>
+  <circle cx="112" cy="86" r="6" fill="#ff5588" stroke="black" stroke-width="2"/>
+  <circle cx="88" cy="86" r="3" fill="black"/>
+  <circle cx="112" cy="86" r="3" fill="black"/>
+  <circle cx="86" cy="84" r="1.5" fill="white"/>
+  <circle cx="110" cy="84" r="1.5" fill="white"/>
+  <!-- Nose -->
+  <polygon points="100,98 95,104 105,104" fill="#ff7799" stroke="black" stroke-width="1.5"/>
+  <!-- Mouth -->
+  <path d="M95 104 Q100 110 105 104" fill="none" stroke="black" stroke-width="2" stroke-linecap="round"/>
+  <!-- Whiskers -->
+  <line x1="60" y1="98" x2="90" y2="101" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="60" y1="104" x2="90" y2="104" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="140" y1="98" x2="110" y2="101" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="140" y1="104" x2="110" y2="104" stroke="black" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Paws -->
+  <ellipse cx="74" cy="182" rx="16" ry="10" fill="#eeeeee" stroke="black" stroke-width="2.5"/>
+  <ellipse cx="126" cy="182" rx="16" ry="10" fill="#eeeeee" stroke="black" stroke-width="2.5"/>
+  <!-- Tail -->
+  <circle cx="142" cy="158" r="12" fill="white" stroke="black" stroke-width="2.5"/>
+</svg>
