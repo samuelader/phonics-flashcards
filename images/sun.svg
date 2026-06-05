@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Sun rays -->
+  <line x1="100" y1="20" x2="100" y2="8" stroke="#ffcc00" stroke-width="6" stroke-linecap="round"/>
+  <line x1="100" y1="180" x2="100" y2="192" stroke="#ffcc00" stroke-width="6" stroke-linecap="round"/>
+  <line x1="20" y1="100" x2="8" y2="100" stroke="#ffcc00" stroke-width="6" stroke-linecap="round"/>
+  <line x1="180" y1="100" x2="192" y2="100" stroke="#ffcc00" stroke-width="6" stroke-linecap="round"/>
+  <line x1="43" y1="43" x2="35" y2="35" stroke="#ffcc00" stroke-width="6" stroke-linecap="round"/>
+  <line x1="157" y1="43" x2="165" y2="35" stroke="#ffcc00" stroke-width="6" stroke-linecap="round"/>
+  <line x1="43" y1="157" x2="35" y2="165" stroke="#ffcc00" stroke-width="6" stroke-linecap="round"/>
+  <line x1="157" y1="157" x2="165" y2="165" stroke="#ffcc00" stroke-width="6" stroke-linecap="round"/>
+  <!-- Diagonal rays -->
+  <line x1="68" y1="28" x2="62" y2="18" stroke="#ffcc00" stroke-width="5" stroke-linecap="round"/>
+  <line x1="132" y1="28" x2="138" y2="18" stroke="#ffcc00" stroke-width="5" stroke-linecap="round"/>
+  <line x1="28" y1="68" x2="18" y2="62" stroke="#ffcc00" stroke-width="5" stroke-linecap="round"/>
+  <line x1="172" y1="68" x2="182" y2="62" stroke="#ffcc00" stroke-width="5" stroke-linecap="round"/>
+  <line x1="28" y1="132" x2="18" y2="138" stroke="#ffcc00" stroke-width="5" stroke-linecap="round"/>
+  <line x1="172" y1="132" x2="182" y2="138" stroke="#ffcc00" stroke-width="5" stroke-linecap="round"/>
+  <line x1="68" y1="172" x2="62" y2="182" stroke="#ffcc00" stroke-width="5" stroke-linecap="round"/>
+  <line x1="132" y1="172" x2="138" y2="182" stroke="#ffcc00" stroke-width="5" stroke-linecap="round"/>
+  <!-- Sun body -->
+  <circle cx="100" cy="100" r="52" fill="#ffdd00" stroke="black" stroke-width="3"/>
+  <!-- Sun body stroke overlay for rays -->
+  <circle cx="100" cy="100" r="52" fill="#ffdd00" stroke="black" stroke-width="3"/>
+  <!-- Eyes -->
+  <circle cx="85" cy="92" r="7" fill="#cc8800"/>
+  <circle cx="115" cy="92" r="7" fill="#cc8800"/>
+  <circle cx="83" cy="90" r="3" fill="black"/>
+  <circle cx="113" cy="90" r="3" fill="black"/>
+  <!-- Big smile -->
+  <path d="M72 112 Q100 135 128 112" fill="none" stroke="black" stroke-width="4" stroke-linecap="round"/>
+  <!-- Rosy cheeks -->
+  <circle cx="74" cy="108" r="9" fill="#ffaa55" opacity="0.6"/>
+  <circle cx="126" cy="108" r="9" fill="#ffaa55" opacity="0.6"/>
+</svg>

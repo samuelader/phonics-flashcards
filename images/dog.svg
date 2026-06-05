@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Body -->
+  <ellipse cx="100" cy="148" rx="48" ry="36" fill="#cc8833" stroke="black" stroke-width="3"/>
+  <!-- Head -->
+  <circle cx="100" cy="90" r="34" fill="#cc8833" stroke="black" stroke-width="3"/>
+  <!-- Floppy ears -->
+  <ellipse cx="68" cy="92" rx="16" ry="26" fill="#aa6622" stroke="black" stroke-width="3" transform="rotate(-15,68,92)"/>
+  <ellipse cx="132" cy="92" rx="16" ry="26" fill="#aa6622" stroke="black" stroke-width="3" transform="rotate(15,132,92)"/>
+  <!-- Snout -->
+  <ellipse cx="100" cy="100" rx="18" ry="13" fill="#ddaa66" stroke="black" stroke-width="2.5"/>
+  <!-- Nose -->
+  <ellipse cx="100" cy="94" rx="8" ry="6" fill="#221100" stroke="black" stroke-width="2"/>
+  <!-- Eyes -->
+  <circle cx="86" cy="82" r="6" fill="#331100" stroke="black" stroke-width="2"/>
+  <circle cx="114" cy="82" r="6" fill="#331100" stroke="black" stroke-width="2"/>
+  <circle cx="84" cy="80" r="2" fill="white"/>
+  <circle cx="112" cy="80" r="2" fill="white"/>
+  <!-- Mouth -->
+  <path d="M93 105 Q100 112 107 105" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Tongue -->
+  <ellipse cx="100" cy="113" rx="7" ry="8" fill="#ff6677" stroke="black" stroke-width="2"/>
+  <!-- Tail -->
+  <path d="M148 142 Q175 125 168 108" fill="none" stroke="#cc8833" stroke-width="10" stroke-linecap="round"/>
+  <path d="M148 142 Q175 125 168 108" fill="none" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <!-- Legs -->
+  <rect x="68" y="172" width="20" height="22" rx="8" fill="#cc8833" stroke="black" stroke-width="2.5"/>
+  <rect x="112" y="172" width="20" height="22" rx="8" fill="#cc8833" stroke="black" stroke-width="2.5"/>
+</svg>

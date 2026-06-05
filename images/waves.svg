@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Sun -->
+  <circle cx="155" cy="50" r="22" fill="#ffd633" stroke="black" stroke-width="3"/>
+  <!-- Big wave -->
+  <path d="M20 120 Q35 80 70 90 Q95 98 90 75 Q120 95 100 120 Q95 140 60 135 Q30 132 20 120 Z" fill="#4db8ff" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Foam on big wave -->
+  <path d="M65 92 Q80 95 88 80" fill="none" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <!-- Lower water band -->
+  <path d="M10 150 Q40 135 70 150 Q100 165 130 150 Q160 135 190 150 L190 195 L10 195 Z" fill="#2e9ae6" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M10 170 Q40 158 70 170 Q100 182 130 170 Q160 158 190 170" fill="none" stroke="#aee3ff" stroke-width="4" stroke-linecap="round"/>
+</svg>

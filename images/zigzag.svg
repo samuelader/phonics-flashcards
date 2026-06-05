@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Zigzag lines, stacked colours -->
+  <polyline points="20,60 60,30 100,60 140,30 180,60" fill="none" stroke="#ff4444" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="20,100 60,70 100,100 140,70 180,100" fill="none" stroke="#ffaa22" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="20,140 60,110 100,140 140,110 180,140" fill="none" stroke="#33bb55" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="20,180 60,150 100,180 140,150 180,180" fill="none" stroke="#3399ff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

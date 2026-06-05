@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Mountain -->
+  <path d="M30 180 L75 70 L125 70 L170 180 Z" fill="#8a6a4a" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Crater rim -->
+  <ellipse cx="100" cy="70" rx="25" ry="8" fill="#6e5238" stroke="black" stroke-width="3"/>
+  <!-- Lava flows down -->
+  <path d="M85 72 Q80 110 95 140 Q98 160 90 180" fill="none" stroke="#ff6a00" stroke-width="9" stroke-linecap="round"/>
+  <path d="M118 72 Q126 100 118 130 Q114 150 122 175" fill="none" stroke="#ff8c1a" stroke-width="7" stroke-linecap="round"/>
+  <!-- Erupting lava -->
+  <path d="M100 70 Q96 40 100 22 Q104 40 100 70" fill="#ff4d00" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <circle cx="78" cy="40" r="8" fill="#ff6a00" stroke="black" stroke-width="2.5"/>
+  <circle cx="122" cy="38" r="9" fill="#ffb31a" stroke="black" stroke-width="2.5"/>
+  <circle cx="100" cy="20" r="7" fill="#ffd633" stroke="black" stroke-width="2.5"/>
+  <circle cx="60" cy="55" r="5" fill="#ff8c1a" stroke="black" stroke-width="2"/>
+  <circle cx="140" cy="55" r="5" fill="#ff6a00" stroke="black" stroke-width="2"/>
+</svg>

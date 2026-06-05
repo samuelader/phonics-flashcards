@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Lightning bolt -->
+  <polygon points="118,15 70,108 100,108 82,185 148,88 115,88" 
+           fill="#ffee00" stroke="black" stroke-width="4" stroke-linejoin="round"/>
+  <!-- Inner glow -->
+  <polygon points="118,28 80,105 105,105 88,172 140,95 112,95" 
+           fill="#fff788" stroke="none"/>
+  <!-- Glow aura -->
+  <polygon points="118,15 70,108 100,108 82,185 148,88 115,88" 
+           fill="none" stroke="#ffaa00" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Spark lines -->
+  <line x1="158" y1="28" x2="172" y2="20" stroke="#ffee00" stroke-width="3" stroke-linecap="round"/>
+  <line x1="165" y1="42" x2="182" y2="40" stroke="#ffee00" stroke-width="3" stroke-linecap="round"/>
+  <line x1="160" y1="58" x2="175" y2="60" stroke="#ffee00" stroke-width="3" stroke-linecap="round"/>
+  <line x1="42" y1="130" x2="28" y2="125" stroke="#ffee00" stroke-width="3" stroke-linecap="round"/>
+  <line x1="38" y1="148" x2="22" y2="148" stroke="#ffee00" stroke-width="3" stroke-linecap="round"/>
+</svg>

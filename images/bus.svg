@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Bus body -->
+  <rect x="15" y="70" width="170" height="90" rx="12" fill="#ffdd00" stroke="black" stroke-width="3"/>
+  <!-- Bus front -->
+  <rect x="155" y="85" width="30" height="60" rx="8" fill="#ffdd00" stroke="black" stroke-width="3"/>
+  <!-- Windshield -->
+  <rect x="158" y="88" width="22" height="28" rx="4" fill="#aaddff" stroke="black" stroke-width="2.5"/>
+  <!-- Windows -->
+  <rect x="28" y="82" width="30" height="28" rx="5" fill="#aaddff" stroke="black" stroke-width="2.5"/>
+  <rect x="70" y="82" width="30" height="28" rx="5" fill="#aaddff" stroke="black" stroke-width="2.5"/>
+  <rect x="112" y="82" width="30" height="28" rx="5" fill="#aaddff" stroke="black" stroke-width="2.5"/>
+  <!-- Door -->
+  <rect x="28" y="118" width="24" height="36" rx="4" fill="#ffbb00" stroke="black" stroke-width="2.5"/>
+  <line x1="40" y1="118" x2="40" y2="154" stroke="black" stroke-width="2"/>
+  <!-- Wheels -->
+  <circle cx="52" cy="162" r="18" fill="#333333" stroke="black" stroke-width="3"/>
+  <circle cx="52" cy="162" r="9" fill="#888888" stroke="black" stroke-width="2"/>
+  <circle cx="148" cy="162" r="18" fill="#333333" stroke="black" stroke-width="3"/>
+  <circle cx="148" cy="162" r="9" fill="#888888" stroke="black" stroke-width="2"/>
+  <!-- Headlight -->
+  <circle cx="182" cy="120" r="7" fill="#ffffaa" stroke="black" stroke-width="2"/>
+  <!-- Black stripe -->
+  <line x1="15" y1="115" x2="155" y2="115" stroke="black" stroke-width="3"/>
+</svg>

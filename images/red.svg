@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Apple body -->
+  <path d="M100 52 Q60 48 45 85 Q32 120 45 150 Q60 178 100 180 Q140 178 155 150 Q168 120 155 85 Q140 48 100 52 Z" 
+        fill="#ee2211" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Apple highlight -->
+  <ellipse cx="76" cy="85" rx="14" ry="26" fill="#ff6655" opacity="0.6" transform="rotate(-15,76,85)"/>
+  <!-- Leaf -->
+  <path d="M100 40 Q118 22 128 30 Q120 48 100 52 Z" fill="#44cc22" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M100 40 Q88 25 95 18 Q106 28 100 40 Z" fill="#33bb11" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Stem -->
+  <rect x="97" y="25" width="6" height="20" rx="3" fill="#774422" stroke="black" stroke-width="2"/>
+  <!-- Leaf vein -->
+  <path d="M100 52 Q116 40 128 30" fill="none" stroke="#33aa11" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Jet fuselage -->
+  <path d="M25 100 Q50 82 130 85 L175 100 L130 115 Q50 118 25 100 Z" fill="#3366ee" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Nose cone -->
+  <path d="M130 85 L175 100 L130 115 Z" fill="#2255cc" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Main wing -->
+  <path d="M80 90 L60 55 L120 88 Z" fill="#2255cc" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M80 110 L60 145 L120 112 Z" fill="#2255cc" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Tail fin -->
+  <path d="M35 90 L22 65 L50 88 Z" fill="#2255cc" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Cockpit window -->
+  <ellipse cx="145" cy="97" rx="12" ry="8" fill="#aaddff" stroke="black" stroke-width="2.5" transform="rotate(-10,145,97)"/>
+  <!-- Engine trail -->
+  <path d="M25 100 Q10 100 5 105" fill="none" stroke="#ffaa44" stroke-width="6" stroke-linecap="round"/>
+  <path d="M25 100 Q8 97 2 95" fill="none" stroke="#ffdd88" stroke-width="4" stroke-linecap="round"/>
+  <!-- Roundel -->
+  <circle cx="95" cy="100" r="10" fill="#ff2222" stroke="white" stroke-width="2"/>
+  <circle cx="95" cy="100" r="6" fill="white"/>
+  <circle cx="95" cy="100" r="3" fill="#2255cc"/>
+</svg>

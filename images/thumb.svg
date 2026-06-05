@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Hand / fist -->
+  <rect x="58" y="108" width="84" height="72" rx="18" fill="#ffcc99" stroke="black" stroke-width="3"/>
+  <!-- Finger knuckle line -->
+  <line x1="72" y1="110" x2="72" y2="118" stroke="#cc9966" stroke-width="2" stroke-linecap="round"/>
+  <line x1="90" y1="110" x2="90" y2="118" stroke="#cc9966" stroke-width="2" stroke-linecap="round"/>
+  <line x1="108" y1="110" x2="108" y2="118" stroke="#cc9966" stroke-width="2" stroke-linecap="round"/>
+  <line x1="126" y1="110" x2="126" y2="118" stroke="#cc9966" stroke-width="2" stroke-linecap="round"/>
+  <!-- Thumb -->
+  <path d="M58 130 Q35 128 32 108 Q30 88 48 80 Q62 74 72 85 L72 110" fill="#ffcc99" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Thumb knuckle line -->
+  <line x1="48" y1="95" x2="58" y2="98" stroke="#cc9966" stroke-width="2" stroke-linecap="round"/>
+  <!-- Nail on thumb -->
+  <ellipse cx="40" cy="86" rx="8" ry="10" fill="#ffddcc" stroke="#cc9966" stroke-width="2" transform="rotate(-20,40,86)"/>
+  <!-- Wrist -->
+  <rect x="68" y="175" width="64" height="18" rx="8" fill="#ffcc99" stroke="black" stroke-width="3"/>
+  <!-- Wrist line -->
+  <line x1="68" y1="180" x2="132" y2="180" stroke="#cc9966" stroke-width="2"/>
+</svg>

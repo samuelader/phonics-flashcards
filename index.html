@@ -73,6 +73,8 @@
   .dot.now{background:var(--brand);transform:scale(1.25);}
   .card{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;min-height:0;padding:16px;text-align:center;}
   .grapheme{font-size:clamp(120px,40vh,300px);font-weight:900;line-height:.9;color:var(--ink);}
+  .pic-img{width:120px;height:120px;object-fit:contain;margin:8px auto 0;display:block;}
+  .pic-emoji{font-size:80px;text-align:center;margin:8px 0 0;}
   .word{font-size:clamp(64px,16vh,140px);font-weight:900;letter-spacing:.06em;}
   .word .gp{display:inline-block;padding:0 .02em;border-radius:14px;}
   .word .gp.tapped{color:var(--brand);}
@@ -166,7 +168,7 @@
   <section id="home" class="screen active">
     <div class="gear" id="gear"><div class="ring"></div>⚙️</div>
     <div class="center">
-      <div class="title">Phonics</div>
+      <div class="title" id="homeTitle">Phonics</div>
       <div class="sub" id="homeSub">Set 1</div>
       <button class="play" id="playBtn"><span class="emoji">▶️</span><span>Play</span></button>
       <div class="row">
@@ -186,7 +188,7 @@
   <section id="done" class="screen">
     <div class="center">
       <div class="cheer" style="font-size:120px" id="doneEmoji">🎉</div>
-      <div class="title">Great job!</div>
+      <div class="title" id="doneTitle">Great job!</div>
       <div class="pill" id="stickerEarned">⭐ New sticker!</div>
       <div class="row">
         <button class="big-btn" id="againBtn">Play again</button>
@@ -210,6 +212,11 @@
     <div class="scroll">
 
       <div class="pcard">
+        <h3>Child's name</h3>
+        <input id="childNameInput" type="text" style="font-size:20px;padding:8px 12px;border-radius:10px;border:2px solid #e2e9f3;width:100%;box-sizing:border-box" maxlength="20" />
+      </div>
+
+      <div class="pcard">
         <h3>Current set</h3>
         <p class="note">Advance only when the current sounds are secure (green below).</p>
         <div class="row" style="justify-content:space-between">
@@ -222,10 +229,16 @@
         <p class="note" id="setUnlocks"></p>
       </div>
 
-      <div class="pcard">
+      <div class=”pcard”>
         <h3>Sounds &amp; recordings</h3>
-        <p class="note">Tap a sound to record it. Say the <b>pure</b> sound — /t/, not “tuh”. Green = recorded.</p>
-        <div class="gpc-grid" id="gpcGrid"></div>
+        <p class=”note”>Tap a sound to record it. Say the <b>pure</b> sound — /t/, not “tuh”. Green = recorded.</p>
+        <div class=”gpc-grid” id=”gpcGrid”></div>
+      </div>
+
+      <div class=”pcard”>
+        <h3>Word recordings</h3>
+        <p class=”note”>Tap a word to record it. Say the whole word clearly. Green = recorded.</p>
+        <div class=”gpc-grid” id=”wordGrid”></div>
       </div>
 
       <div class="pcard">
@@ -294,15 +307,15 @@ const ROBOT_GAP = 0.5; // seconds between sounds in Robot voice
 // GPCs in Little Wandle order. examplePicture is a word -> emoji via PIC.
 const GPCS = [
   // set 1
-  {id:"s",set:1,type:"single",examplePicture:"sun"},
-  {id:"a",set:1,type:"single",examplePicture:"ant"},
-  {id:"t",set:1,type:"single",examplePicture:"tap"},
-  {id:"p",set:1,type:"single",examplePicture:"pan"},
+  {id:"s",set:1,type:"single",examplePicture:"snake"},
+  {id:"a",set:1,type:"single",examplePicture:"astronaut"},
+  {id:"t",set:1,type:"single",examplePicture:"tiger"},
+  {id:"p",set:1,type:"single",examplePicture:"penguin"},
   // set 2
-  {id:"i",set:2,type:"single",examplePicture:"igloo"},
+  {id:"i",set:2,type:"single",examplePicture:"iguana"},
   {id:"n",set:2,type:"single",examplePicture:"net"},
-  {id:"m",set:2,type:"single",examplePicture:"map"},
-  {id:"d",set:2,type:"single",examplePicture:"dog"},
+  {id:"m",set:2,type:"single",examplePicture:"mouse"},
+  {id:"d",set:2,type:"single",examplePicture:"duck"},
   // set 3
   {id:"g",set:3,type:"single",examplePicture:"goat"},
   {id:"o",set:3,type:"single",examplePicture:"octopus"},
@@ -310,30 +323,30 @@ const GPCS = [
   {id:"k",set:3,type:"single",examplePicture:"kite"},
   // set 4
   {id:"ck",set:4,type:"digraph",examplePicture:"duck"},
-  {id:"e",set:4,type:"single",examplePicture:"egg"},
+  {id:"e",set:4,type:"single",examplePicture:"elephant"},
   {id:"u",set:4,type:"single",examplePicture:"umbrella"},
-  {id:"r",set:4,type:"single",examplePicture:"rabbit"},
+  {id:"r",set:4,type:"single",examplePicture:"rainbow"},
   // set 5
-  {id:"h",set:5,type:"single",examplePicture:"hat"},
-  {id:"b",set:5,type:"single",examplePicture:"bus"},
-  {id:"f",set:5,type:"single",examplePicture:"fish"},
-  {id:"l",set:5,type:"single",examplePicture:"leg"},
+  {id:"h",set:5,type:"single",examplePicture:"helicopter"},
+  {id:"b",set:5,type:"single",examplePicture:"bear"},
+  {id:"f",set:5,type:"single",examplePicture:"flamingo"},
+  {id:"l",set:5,type:"single",examplePicture:"lollipop"},
   // set 6
   {id:"ff",set:6,type:"double",examplePicture:"puff"},
   {id:"ll",set:6,type:"double",examplePicture:"bell"},
   {id:"ss",set:6,type:"double",examplePicture:"hiss"},
-  {id:"j",set:6,type:"single",examplePicture:"jam"},
+  {id:"j",set:6,type:"single",examplePicture:"jellyfish"},
   // set 7
-  {id:"v",set:7,type:"single",examplePicture:"van"},
-  {id:"w",set:7,type:"single",examplePicture:"web"},
+  {id:"v",set:7,type:"single",examplePicture:"volcano"},
+  {id:"w",set:7,type:"single",examplePicture:"waves"},
   {id:"x",set:7,type:"single",examplePicture:"fox"},
   {id:"y",set:7,type:"single",examplePicture:"yoyo"},
-  // set 8
-  {id:"z",set:8,type:"single",examplePicture:"zip"},
+  // set 8 — LWLSR Autumn 2 Week 3 groups ch with z, zz, qu
+  {id:"z",set:8,type:"single",examplePicture:"zigzag"},
   {id:"zz",set:8,type:"double",examplePicture:"buzz"},
   {id:"qu",set:8,type:"digraph",examplePicture:"queen"},
+  {id:"ch",set:8,type:"digraph",examplePicture:"chips"},
   // set 9
-  {id:"ch",set:9,type:"digraph",examplePicture:"chips"},
   {id:"sh",set:9,type:"digraph",examplePicture:"ship"},
   {id:"th",set:9,type:"digraph",examplePicture:"thumb"},
   {id:"ng",set:9,type:"digraph",examplePicture:"ring"},
@@ -341,9 +354,15 @@ const GPCS = [
 ];
 const GPC_SET = Object.fromEntries(GPCS.map(g=>[g.id,g.set]));
 
+function picHTML(word, size=120){
+  const emoji = PIC[word]||"";
+  return `<img src="images/${word}.svg" alt="${word}" class="pic-img" style="width:${size}px;height:${size}px"
+    onerror="this.outerHTML='<div class=\\'pic-emoji\\' style=\\'font-size:${Math.round(size*0.65)}px\\'>${emoji}</div>">`;
+}
+
 // Pictures: word -> emoji (original, generic; no licensed art).
 const PIC = {
-  sun:"☀️",ant:"🐜",tap:"🚰",pan:"🍳",igloo:"🧊",net:"🥅",map:"🗺️",dog:"🐕",
+  sun:"☀️",ant:"🐜",tap:"🚰",pan:"🍳",insect:"🐛",net:"🥅",map:"🗺️",dog:"🐕",
   goat:"🐐",octopus:"🐙",cat:"🐱",kite:"🪁",duck:"🦆",egg:"🥚",umbrella:"☂️",rabbit:"🐰",
   hat:"🎩",bus:"🚌",fish:"🐟",leg:"🦵",puff:"💨",bell:"🔔",hiss:"🐍",jam:"🍓",
   van:"🚐",web:"🕸️",fox:"🦊",yoyo:"🪀",zip:"🤐",buzz:"🐝",queen:"👑",chips:"🍟",
@@ -351,6 +370,10 @@ const PIC = {
   pin:"📌",tin:"🥫",man:"🧍",pot:"🍲",top:"🔝",can:"🥫",sun2:"☀️",cup:"☕",
   run:"🏃",red:"🟥",sock:"🧦",bed:"🛏️",hen:"🐔",bat:"🦇",fan:"🪭",lip:"👄",
   jet:"✈️",six:"6️⃣",quiz:"❓",zap:"⚡",shop:"🏪",chip:"🍟",
+  // LWLSR keyword pictures
+  snake:"🐍",astronaut:"🧑‍🚀",tiger:"🐯",penguin:"🐧",iguana:"🦎",mouse:"🐭",
+  elephant:"🐘",rainbow:"🌈",helicopter:"🚁",bear:"🐻",flamingo:"🦩",lollipop:"🍭",
+  jellyfish:"🪼",volcano:"🌋",waves:"🌊",zigzag:"〽️",
 };
 
 // Decodable words. minSet computed from graphemes. picture = key in PIC (or null).
@@ -402,7 +425,7 @@ const WORD_SEED = [
 ];
 const WORDS = WORD_SEED.map(([text,graphemes,real,picture])=>({
   kind:"word", id:text, text, graphemes, real, picture,
-  minSet: Math.max(...graphemes.map(g=>GPC_SET[g]))
+  minSet: Math.max(2, ...graphemes.map(g=>GPC_SET[g]))
 }));
 
 // Tricky words (sight). Autumn 1: sets 1-5. Autumn 2: sets 6-9.
@@ -421,7 +444,7 @@ const ALL_WORDS = WORDS.concat(TRICKY);
 
 const SET_UNLOCKS = {
   1:"s a t p", 2:"i n m d", 3:"g o c k", 4:"ck e u r", 5:"h b f l",
-  6:"ff ll ss j", 7:"v w x y", 8:"z zz qu", 9:"ch sh th ng nk"
+  6:"ff ll ss j", 7:"v w x y", 8:"z zz qu ch", 9:"sh th ng nk"
 };
 const MODE_LABELS = {say:"Say it",find:"Find it",blend:"Blend it",robot:"Robot voice",treasure:"Treasure or trash"};
 
@@ -431,6 +454,7 @@ function defaultProgress(){
   return {
     currentSet:1, currentRound:1, items:{},
     stickers:0, medals:[],
+    childName:"Artie",
     settings:{ modesEnabled:["say","find","blend","robot","treasure"], roundLength:8 }
   };
 }
@@ -524,6 +548,9 @@ async function playGrapheme(grapheme){
   const ctx=audioCtx();
   const src=ctx.createBufferSource();
   src.buffer=buf; src.connect(ctx.destination); src.start();
+}
+async function playWord(wordText){
+  return playGrapheme("w:"+wordText);
 }
 // Robot voice: schedule sounds with a beat between them (Web Audio, tight timing)
 async function playRobot(graphemes){
@@ -643,7 +670,11 @@ const $ = sel=>document.querySelector(sel);
 const $$ = sel=>document.querySelectorAll(sel);
 
 function renderHome(){
+  const name = P.childName||"";
+  $("#homeTitle").textContent = name ? name+"'s Phonics" : "Phonics";
   $("#homeSub").textContent = "Set "+P.currentSet;
+  $("#stickerBtn").textContent = "⭐ "+ (name ? name+"'s Stickers" : "Stickers");
+  document.querySelector("#stickers .head h2").textContent = "⭐ "+ (name ? name+"'s Stickers" : "My Stickers");
 }
 
 /* ---------- Feedback fx ---------- */
@@ -756,6 +787,11 @@ function renderSay(item,card,foot){
   if(item.kind==="gpc"){
     const g=document.createElement("div"); g.className="grapheme"; g.textContent=item.id;
     card.appendChild(g);
+    if(item.examplePicture){
+      const pic=document.createElement("div");
+      pic.innerHTML=picHTML(item.examplePicture, 120);
+      card.appendChild(pic);
+    }
     if(RECORDED.has(item.id)){
       const pm=document.createElement("button"); pm.className="play-mine"; pm.textContent="▶ Play mine";
       pm.onclick=()=>playGrapheme(item.id);
@@ -806,6 +842,11 @@ function renderBlend(item,card,foot){
   card.appendChild(w);
   const h=document.createElement("div"); h.className="hint"; h.textContent="Tap each sound, then say the word";
   card.appendChild(h);
+  if(RECORDED.has("w:"+item.id)){
+    const hear=document.createElement("button"); hear.className="play-mine"; hear.textContent="▶ Hear it";
+    hear.onclick=()=>playWord(item.id);
+    card.appendChild(hear);
+  }
   foot.appendChild(markBar(item, ok=>handleParentMark(item,ok)));
 }
 
@@ -861,6 +902,11 @@ function finishRound(){
   show("done");
   confetti();
   $("#doneEmoji").textContent = ["🎉","🥳","🌈","🎈","⭐"][Math.floor(Math.random()*5)];
+  const name = P.childName||"";
+  const cheers = name
+    ? [`Amazing, ${name}!`,`Brilliant, ${name}!`,`Well done, ${name}!`,`Superstar ${name}!`,`You're a star, ${name}!`]
+    : ["Amazing!","Brilliant!","Well done!","Superstar!","You're a star!"];
+  $("#doneTitle").textContent = cheers[Math.floor(Math.random()*cheers.length)];
   $("#stickerEarned").textContent = "⭐ Sticker "+P.stickers+"!";
   goodSound(); setTimeout(goodSound,200);
   renderHome();
@@ -903,11 +949,27 @@ function renderStickers(){
 /* ---------- Parent panel ---------- */
 function openParent(){ renderParent(); show("parent"); }
 function renderParent(){
+  $("#childNameInput").value=P.childName||"";
   $("#setLabel").textContent="Set "+P.currentSet;
   $("#setUnlocks").textContent="Sounds in this set: "+SET_UNLOCKS[P.currentSet];
   $("#rlLabel").textContent=P.settings.roundLength;
   renderGpcGrid();
+  renderWordGrid();
   renderModeToggles();
+}
+function renderWordGrid(){
+  const grid=$("#wordGrid"); grid.innerHTML="";
+  const words=WORDS.filter(w=>w.real && w.minSet<=P.currentSet);
+  words.forEach(w=>{
+    const key="w:"+w.id;
+    const rec=RECORDED.has(key);
+    const cell=document.createElement("button");
+    cell.className="gpc-cell"+(rec?" rec":"");
+    cell.innerHTML=`<div class="g" style="font-size:20px">${w.text}</div>
+      <div class="st">${rec?"🎙️":"—"}</div>`;
+    cell.onclick=()=>openWordRec(w);
+    grid.appendChild(cell);
+  });
 }
 function renderGpcGrid(){
   const grid=$("#gpcGrid"); grid.innerHTML="";
@@ -918,7 +980,7 @@ function renderGpcGrid(){
     cell.className="gpc-cell"+(rec?" rec":"")+(locked?" locked":"");
     const sec=isSecure(g.id);
     cell.innerHTML=`<div class="g">${g.id}</div>
-      <div class="st">${PIC[g.examplePicture]||""} ${rec?"🎙️":"—"}${sec?' <span class="sec">●secure</span>':""}</div>`;
+      <div class="st">${g.examplePicture?picHTML(g.examplePicture,28):""} ${rec?"🎙️":"—"}${sec?' <span class="sec">●secure</span>':""}</div>`;
     cell.onclick=()=>openRec(g);
     grid.appendChild(cell);
   });
@@ -943,16 +1005,24 @@ function renderModeToggles(){
 }
 
 /* ---------- Recording flow ---------- */
-let mediaRecorder=null, recChunks=[], recGrapheme=null, recMime="audio/mp4";
+let mediaRecorder=null, recChunks=[], recGrapheme=null, recMime="audio/mp4", recIsWord=false;
 function pickMime(){
   const cands=["audio/mp4","audio/webm","audio/webm;codecs=opus"];
   for(const c of cands){ if(window.MediaRecorder && MediaRecorder.isTypeSupported(c)) return c; }
   return "";
 }
 function openRec(g){
+  recIsWord=false;
   recGrapheme=g.id;
   $("#recGlyph").textContent=g.id;
   $("#recHint").textContent=`Hold the button and say /${g.id}/ — the pure sound (e.g. ${PIC[g.examplePicture]||g.examplePicture})`;
+  $("#recModal").classList.add("open");
+}
+function openWordRec(w){
+  recIsWord=true;
+  recGrapheme="w:"+w.id;
+  $("#recGlyph").textContent=w.text;
+  $("#recHint").textContent=`Hold the button and say the whole word: "${w.text}"`;
   $("#recModal").classList.add("open");
 }
 function closeRec(){ $("#recModal").classList.remove("open"); }
@@ -970,8 +1040,8 @@ async function startRecording(){
       await putAudio(recGrapheme,{blob,mime,recordedAt:Date.now()});
       bufferCache.delete(recGrapheme);
       await refreshRecorded();
-      renderGpcGrid();
-      toast("Saved /"+recGrapheme+"/");
+      if(recIsWord){ renderWordGrid(); toast("Saved \""+recGrapheme.slice(2)+"\""); }
+      else{ renderGpcGrid(); toast("Saved /"+recGrapheme+"/"); }
     };
     mediaRecorder.start();
     $("#holdBtn").classList.add("recording"); $("#holdBtn").textContent="Recording…";
@@ -1069,6 +1139,7 @@ function wire(){
   gear.addEventListener("pointercancel",gateEnd);
 
   // set stepper
+  $("#childNameInput").oninput=()=>{ P.childName=$("#childNameInput").value.trim(); saveProgress(); renderHome(); };
   $("#setUp").onclick=()=>{ if(P.currentSet<CONFIG.MAX_SET){ P.currentSet++; saveProgress(); renderParent(); renderHome(); toast("Set "+P.currentSet+" unlocked 🎉"); } };
   $("#setDown").onclick=()=>{ if(P.currentSet>1){ P.currentSet--; saveProgress(); renderParent(); renderHome(); } };
   $("#rlUp").onclick=()=>{ if(P.settings.roundLength<14){ P.settings.roundLength++; saveProgress(); renderParent(); } };
@@ -1080,7 +1151,7 @@ function wire(){
   hold.addEventListener("pointerup",e=>{e.preventDefault();stopRecording();});
   hold.addEventListener("pointerleave",()=>stopRecording());
   hold.addEventListener("pointercancel",()=>stopRecording());
-  $("#recPlay").onclick=()=>playGrapheme(recGrapheme);
+  $("#recPlay").onclick=()=>playGrapheme(recGrapheme); // key is already "w:word" or grapheme
   $("#recClose").onclick=closeRec;
 
   // backup

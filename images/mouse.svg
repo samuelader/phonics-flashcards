@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Tail -->
+  <path d="M140 150 Q180 150 178 110 Q176 95 165 102" fill="none" stroke="#e08aa8" stroke-width="6" stroke-linecap="round"/>
+  <!-- Ears -->
+  <circle cx="64" cy="70" r="30" fill="#b0b0b8" stroke="black" stroke-width="3"/>
+  <circle cx="136" cy="70" r="30" fill="#b0b0b8" stroke="black" stroke-width="3"/>
+  <circle cx="64" cy="70" r="17" fill="#f2c0d2"/>
+  <circle cx="136" cy="70" r="17" fill="#f2c0d2"/>
+  <!-- Body/head -->
+  <ellipse cx="100" cy="120" rx="56" ry="52" fill="#b0b0b8" stroke="black" stroke-width="3"/>
+  <!-- Eyes -->
+  <circle cx="84" cy="108" r="7" fill="white" stroke="black" stroke-width="2"/>
+  <circle cx="116" cy="108" r="7" fill="white" stroke="black" stroke-width="2"/>
+  <circle cx="85" cy="109" r="3" fill="black"/>
+  <circle cx="115" cy="109" r="3" fill="black"/>
+  <!-- Nose -->
+  <ellipse cx="100" cy="128" rx="6" ry="5" fill="#e06a90" stroke="black" stroke-width="2"/>
+  <!-- Mouth -->
+  <path d="M100 133 Q94 140 88 137 M100 133 Q106 140 112 137" fill="none" stroke="black" stroke-width="2" stroke-linecap="round"/>
+  <!-- Whiskers -->
+  <line x1="92" y1="128" x2="62" y2="124" stroke="black" stroke-width="2" stroke-linecap="round"/>
+  <line x1="92" y1="132" x2="62" y2="136" stroke="black" stroke-width="2" stroke-linecap="round"/>
+  <line x1="108" y1="128" x2="138" y2="124" stroke="black" stroke-width="2" stroke-linecap="round"/>
+  <line x1="108" y1="132" x2="138" y2="136" stroke="black" stroke-width="2" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Umbrella canopy -->
+  <path d="M20 100 Q20 38 100 32 Q180 38 180 100 Z" fill="#ee2211" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Canopy panels -->
+  <path d="M100 32 L100 100" stroke="black" stroke-width="2"/>
+  <path d="M60 38 Q50 65 46 100" stroke="black" stroke-width="2" fill="none"/>
+  <path d="M140 38 Q150 65 154 100" stroke="black" stroke-width="2" fill="none"/>
+  <!-- Panel colours -->
+  <path d="M100 32 Q60 38 46 100 L100 100 Z" fill="#ffdd00" stroke="none"/>
+  <path d="M100 32 Q140 38 154 100 L100 100 Z" fill="#ffdd00" stroke="none"/>
+  <!-- Canopy outline -->
+  <path d="M20 100 Q20 38 100 32 Q180 38 180 100 Z" fill="none" stroke="black" stroke-width="3"/>
+  <path d="M100 32 L100 100" stroke="black" stroke-width="2"/>
+  <path d="M60 38 Q50 65 46 100" stroke="black" stroke-width="2" fill="none"/>
+  <path d="M140 38 Q150 65 154 100" stroke="black" stroke-width="2" fill="none"/>
+  <!-- Scalloped edge bumps -->
+  <circle cx="33" cy="100" r="10" fill="#ee2211" stroke="black" stroke-width="2.5"/>
+  <circle cx="56" cy="100" r="10" fill="#ffdd00" stroke="black" stroke-width="2.5"/>
+  <circle cx="79" cy="100" r="10" fill="#ee2211" stroke="black" stroke-width="2.5"/>
+  <circle cx="100" cy="100" r="10" fill="#ffdd00" stroke="black" stroke-width="2.5"/>
+  <circle cx="121" cy="100" r="10" fill="#ee2211" stroke="black" stroke-width="2.5"/>
+  <circle cx="144" cy="100" r="10" fill="#ffdd00" stroke="black" stroke-width="2.5"/>
+  <circle cx="167" cy="100" r="10" fill="#ee2211" stroke="black" stroke-width="2.5"/>
+  <!-- Handle shaft -->
+  <line x1="100" y1="100" x2="100" y2="175" stroke="#664422" stroke-width="7" stroke-linecap="round"/>
+  <line x1="100" y1="100" x2="100" y2="175" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <!-- Crook handle -->
+  <path d="M100 175 Q100 192 85 192 Q70 192 70 180" fill="none" stroke="#664422" stroke-width="8" stroke-linecap="round"/>
+  <path d="M100 175 Q100 192 85 192 Q70 192 70 180" fill="none" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <!-- Tip -->
+  <circle cx="100" cy="32" r="5" fill="#cc1100" stroke="black" stroke-width="2"/>
+</svg>

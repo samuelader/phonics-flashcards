@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Rainbow arcs -->
+  <path d="M22 150 A78 78 0 0 1 178 150" fill="none" stroke="#ff4d4d" stroke-width="14"/>
+  <path d="M36 150 A64 64 0 0 1 164 150" fill="none" stroke="#ff9a33" stroke-width="14"/>
+  <path d="M50 150 A50 50 0 0 1 150 150" fill="none" stroke="#ffe14d" stroke-width="14"/>
+  <path d="M64 150 A36 36 0 0 1 136 150" fill="none" stroke="#5cd65c" stroke-width="14"/>
+  <path d="M78 150 A22 22 0 0 1 122 150" fill="none" stroke="#4d9aff" stroke-width="14"/>
+  <!-- Outline of whole arch -->
+  <path d="M15 150 A85 85 0 0 1 185 150" fill="none" stroke="black" stroke-width="3"/>
+  <path d="M85 150 A15 15 0 0 1 115 150" fill="none" stroke="black" stroke-width="3"/>
+  <line x1="15" y1="150" x2="85" y2="150" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <line x1="115" y1="150" x2="185" y2="150" stroke="black" stroke-width="3" stroke-linecap="round"/>
+  <!-- Clouds -->
+  <g fill="white" stroke="black" stroke-width="3" stroke-linejoin="round">
+    <circle cx="30" cy="155" r="16"/>
+    <circle cx="50" cy="150" r="18"/>
+    <circle cx="46" cy="165" r="14"/>
+    <circle cx="170" cy="155" r="16"/>
+    <circle cx="150" cy="150" r="18"/>
+    <circle cx="154" cy="165" r="14"/>
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Van body -->
+  <rect x="12" y="85" width="176" height="75" rx="8" fill="#2255cc" stroke="black" stroke-width="3"/>
+  <!-- Cab / roof -->
+  <path d="M100 85 L100 55 Q100 45 115 45 L168 45 Q180 45 188 58 L188 85 Z" fill="#2255cc" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Windshield -->
+  <path d="M105 82 L105 55 Q105 50 115 50 L165 50 Q174 50 180 60 L180 82 Z" fill="#aaddff" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Side window (rear) -->
+  <rect x="22" y="95" width="45" height="32" rx="6" fill="#aaddff" stroke="black" stroke-width="2.5"/>
+  <!-- Rear door line -->
+  <line x1="92" y1="87" x2="92" y2="160" stroke="black" stroke-width="2.5"/>
+  <!-- Door handle -->
+  <rect x="78" y="120" width="12" height="5" rx="2" fill="#cccccc" stroke="black" stroke-width="1.5"/>
+  <!-- Headlight -->
+  <ellipse cx="186" cy="110" rx="6" ry="8" fill="#ffffaa" stroke="black" stroke-width="2"/>
+  <!-- Tail light -->
+  <ellipse cx="14" cy="110" rx="6" ry="8" fill="#ff4422" stroke="black" stroke-width="2"/>
+  <!-- Wheels -->
+  <circle cx="50" cy="162" r="22" fill="#333333" stroke="black" stroke-width="3"/>
+  <circle cx="50" cy="162" r="11" fill="#888888" stroke="black" stroke-width="2"/>
+  <circle cx="155" cy="162" r="22" fill="#333333" stroke="black" stroke-width="3"/>
+  <circle cx="155" cy="162" r="11" fill="#888888" stroke="black" stroke-width="2"/>
+  <!-- Wheel arches -->
+  <path d="M28 160 Q50 138 72 160" fill="none" stroke="black" stroke-width="3"/>
+  <path d="M133 160 Q155 138 177 160" fill="none" stroke="black" stroke-width="3"/>
+  <!-- Logo/stripe -->
+  <line x1="12" y1="128" x2="92" y2="128" stroke="#ffcc00" stroke-width="5"/>
+</svg>

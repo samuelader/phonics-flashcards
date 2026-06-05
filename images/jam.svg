@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Jar body -->
+  <path d="M55 90 L52 165 Q52 175 100 175 Q148 175 148 165 L145 90 Z" fill="#ffe0cc" stroke="black" stroke-width="3"/>
+  <!-- Jam inside -->
+  <path d="M57 115 L55 165 Q55 173 100 173 Q145 173 145 165 L143 115 Z" fill="#ee3366" stroke="none"/>
+  <!-- Jar neck -->
+  <rect x="68" y="72" width="64" height="20" rx="4" fill="#ffe0cc" stroke="black" stroke-width="3"/>
+  <!-- Lid -->
+  <rect x="62" y="58" width="76" height="22" rx="8" fill="#dd4400" stroke="black" stroke-width="3"/>
+  <!-- Lid top highlight -->
+  <ellipse cx="100" cy="62" rx="30" ry="6" fill="#ee5511" stroke="none"/>
+  <!-- Jar neck outline -->
+  <rect x="68" y="72" width="64" height="20" rx="4" fill="none" stroke="black" stroke-width="3"/>
+  <!-- Jar body outline -->
+  <path d="M55 90 L52 165 Q52 175 100 175 Q148 175 148 165 L145 90 Z" fill="none" stroke="black" stroke-width="3"/>
+  <!-- Jam shine -->
+  <ellipse cx="78" cy="140" rx="8" ry="18" fill="#ff6699" opacity="0.4"/>
+  <!-- Label -->
+  <rect x="62" y="118" width="76" height="36" rx="5" fill="white" stroke="black" stroke-width="2"/>
+  <line x1="70" y1="130" x2="130" y2="130" stroke="#cc2244" stroke-width="2"/>
+  <line x1="70" y1="140" x2="130" y2="140" stroke="#cc2244" stroke-width="2"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Big question mark -->
+  <!-- Top curve of ? -->
+  <path d="M65 72 Q65 35 100 30 Q138 28 145 58 Q150 82 128 100 Q115 112 108 125 L108 140" 
+        fill="none" stroke="#2255ee" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M65 72 Q65 35 100 30 Q138 28 145 58 Q150 82 128 100 Q115 112 108 125 L108 140" 
+        fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Dot of ? -->
+  <circle cx="108" cy="168" r="14" fill="#2255ee" stroke="black" stroke-width="3"/>
+</svg>

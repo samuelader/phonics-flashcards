@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Pot body -->
+  <path d="M50 85 L45 165 Q45 178 100 178 Q155 178 155 165 L150 85 Z" fill="#cc6622" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Pot rim -->
+  <ellipse cx="100" cy="85" rx="50" ry="14" fill="#aa4400" stroke="black" stroke-width="3"/>
+  <!-- Lid -->
+  <ellipse cx="100" cy="72" rx="52" ry="15" fill="#dd7733" stroke="black" stroke-width="3"/>
+  <!-- Lid knob -->
+  <ellipse cx="100" cy="58" rx="12" ry="8" fill="#cc6622" stroke="black" stroke-width="3"/>
+  <circle cx="100" cy="52" r="6" fill="#cc6622" stroke="black" stroke-width="2.5"/>
+  <!-- Handles -->
+  <path d="M50 100 Q30 100 30 115 Q30 130 50 130" fill="none" stroke="black" stroke-width="7" stroke-linecap="round"/>
+  <path d="M50 100 Q35 100 35 115 Q35 128 50 128" fill="none" stroke="#cc6622" stroke-width="4" stroke-linecap="round"/>
+  <path d="M150 100 Q170 100 170 115 Q170 130 150 130" fill="none" stroke="black" stroke-width="7" stroke-linecap="round"/>
+  <path d="M150 100 Q165 100 165 115 Q165 128 150 128" fill="none" stroke="#cc6622" stroke-width="4" stroke-linecap="round"/>
+  <!-- Steam -->
+  <path d="M78 68 Q74 55 78 45" fill="none" stroke="#aaaaaa" stroke-width="3" stroke-linecap="round"/>
+  <path d="M100 65 Q96 52 100 42" fill="none" stroke="#aaaaaa" stroke-width="3" stroke-linecap="round"/>
+  <path d="M122 68 Q118 55 122 45" fill="none" stroke="#aaaaaa" stroke-width="3" stroke-linecap="round"/>
+</svg>

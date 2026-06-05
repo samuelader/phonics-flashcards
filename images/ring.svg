@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Ring band -->
+  <ellipse cx="100" cy="130" rx="50" ry="18" fill="#cc9900" stroke="black" stroke-width="3"/>
+  <ellipse cx="100" cy="112" rx="50" ry="18" fill="#ffcc00" stroke="black" stroke-width="3"/>
+  <!-- Band sides -->
+  <path d="M50 112 L50 130 Q50 148 100 148 Q150 148 150 130 L150 112" fill="#ddaa00" stroke="black" stroke-width="3"/>
+  <ellipse cx="100" cy="112" rx="50" ry="18" fill="#ffcc00" stroke="black" stroke-width="3"/>
+  <!-- Ring inner hole -->
+  <ellipse cx="100" cy="112" rx="30" ry="10" fill="#ffe8d0" stroke="black" stroke-width="2.5"/>
+  <!-- Setting for gem -->
+  <rect x="78" y="72" width="44" height="42" rx="8" fill="#ccaa00" stroke="black" stroke-width="3"/>
+  <!-- Gem -->
+  <polygon points="100,60 122,80 114,112 86,112 78,80" fill="#55ddff" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Gem facets -->
+  <line x1="100" y1="60" x2="100" y2="112" stroke="white" stroke-width="1.5" opacity="0.6"/>
+  <line x1="78" y1="80" x2="122" y2="80" stroke="white" stroke-width="1.5" opacity="0.6"/>
+  <line x1="100" y1="60" x2="78" y2="80" stroke="white" stroke-width="1.5" opacity="0.4"/>
+  <line x1="100" y1="60" x2="122" y2="80" stroke="white" stroke-width="1.5" opacity="0.4"/>
+  <!-- Gem sparkle -->
+  <circle cx="88" cy="70" r="4" fill="white" opacity="0.8"/>
+</svg>

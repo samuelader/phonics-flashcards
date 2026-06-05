@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Fun numeral 6 -->
+  <!-- 6 shape using thick path -->
+  <path d="M130 48 Q88 30 62 68 Q38 102 52 142 Q66 180 106 182 Q148 183 160 148 Q172 112 148 88 Q128 68 98 72 Q70 76 62 98 Q55 120 70 138 Q85 155 106 154 Q128 152 136 136 Q144 118 130 106 Q115 93 97 97 Q80 102 78 118 Q76 132 88 140 Q100 148 112 142 Q124 136 122 122" 
+        fill="none" stroke="#ee3311" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M130 48 Q88 30 62 68 Q38 102 52 142 Q66 180 106 182 Q148 183 160 148 Q172 112 148 88 Q128 68 98 72 Q70 76 62 98 Q55 120 70 138 Q85 155 106 154 Q128 152 136 136 Q144 118 130 106 Q115 93 97 97 Q80 102 78 118 Q76 132 88 140 Q100 148 112 142 Q124 136 122 122" 
+        fill="none" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

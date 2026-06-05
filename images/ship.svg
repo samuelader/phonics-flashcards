@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Water -->
+  <path d="M10 155 Q30 148 50 155 Q70 162 90 155 Q110 148 130 155 Q150 162 170 155 Q185 150 190 155 L190 195 L10 195 Z" fill="#3399ff" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Hull -->
+  <path d="M25 140 L30 165 Q30 172 100 172 Q170 172 170 165 L175 140 Z" fill="#cc2200" stroke="black" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Deck -->
+  <rect x="30" y="112" width="140" height="30" rx="4" fill="#f5e9c0" stroke="black" stroke-width="3"/>
+  <!-- Funnel/chimney -->
+  <rect x="85" y="68" width="30" height="46" rx="5" fill="#cc2200" stroke="black" stroke-width="3"/>
+  <!-- Funnel top -->
+  <rect x="80" y="62" width="40" height="12" rx="4" fill="#221100" stroke="black" stroke-width="2.5"/>
+  <!-- Smoke -->
+  <circle cx="100" cy="48" r="10" fill="#888888" stroke="black" stroke-width="2" opacity="0.8"/>
+  <circle cx="112" cy="38" r="8" fill="#aaaaaa" stroke="black" stroke-width="2" opacity="0.7"/>
+  <circle cx="95" cy="30" r="7" fill="#cccccc" stroke="black" stroke-width="2" opacity="0.6"/>
+  <!-- Windows on deck -->
+  <circle cx="50" cy="127" r="7" fill="#aaddff" stroke="black" stroke-width="2"/>
+  <circle cx="72" cy="127" r="7" fill="#aaddff" stroke="black" stroke-width="2"/>
+  <circle cx="128" cy="127" r="7" fill="#aaddff" stroke="black" stroke-width="2"/>
+  <circle cx="150" cy="127" r="7" fill="#aaddff" stroke="black" stroke-width="2"/>
+  <!-- Hull line -->
+  <line x1="30" y1="152" x2="170" y2="152" stroke="#aa1100" stroke-width="2.5"/>
+  <!-- Anchor -->
+  <circle cx="42" cy="145" r="5" fill="white" stroke="black" stroke-width="2"/>
+</svg>

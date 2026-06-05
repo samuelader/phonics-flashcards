@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Wings -->
+  <ellipse cx="75" cy="75" rx="30" ry="18" fill="#cceeff" stroke="black" stroke-width="2.5" opacity="0.85" transform="rotate(-20,75,75)"/>
+  <ellipse cx="125" cy="75" rx="30" ry="18" fill="#cceeff" stroke="black" stroke-width="2.5" opacity="0.85" transform="rotate(20,125,75)"/>
+  <ellipse cx="78" cy="95" rx="22" ry="12" fill="#cceeff" stroke="black" stroke-width="2" opacity="0.75" transform="rotate(-10,78,95)"/>
+  <ellipse cx="122" cy="95" rx="22" ry="12" fill="#cceeff" stroke="black" stroke-width="2" opacity="0.75" transform="rotate(10,122,95)"/>
+  <!-- Body -->
+  <ellipse cx="100" cy="120" rx="28" ry="40" fill="#ffcc00" stroke="black" stroke-width="3"/>
+  <!-- Stripes -->
+  <rect x="72" y="108" width="56" height="10" rx="3" fill="#222222" stroke="none"/>
+  <rect x="72" y="123" width="56" height="10" rx="3" fill="#222222" stroke="none"/>
+  <rect x="72" y="138" width="56" height="10" rx="3" fill="#222222" stroke="none"/>
+  <!-- Body outline over stripes -->
+  <ellipse cx="100" cy="120" rx="28" ry="40" fill="none" stroke="black" stroke-width="3"/>
+  <!-- Head -->
+  <circle cx="100" cy="75" r="22" fill="#ffcc00" stroke="black" stroke-width="3"/>
+  <!-- Eyes -->
+  <circle cx="91" cy="71" r="5" fill="black"/>
+  <circle cx="109" cy="71" r="5" fill="black"/>
+  <circle cx="93" cy="70" r="2" fill="white"/>
+  <circle cx="111" cy="70" r="2" fill="white"/>
+  <!-- Smile -->
+  <path d="M90 82 Q100 90 110 82" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Antennae -->
+  <line x1="92" y1="54" x2="80" y2="35" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="108" y1="54" x2="120" y2="35" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="80" cy="35" r="4" fill="#ffcc00" stroke="black" stroke-width="2"/>
+  <circle cx="120" cy="35" r="4" fill="#ffcc00" stroke="black" stroke-width="2"/>
+  <!-- Stinger -->
+  <polygon points="100,158 95,170 105,170" fill="#cc9900" stroke="black" stroke-width="2"/>
+  <!-- Legs -->
+  <line x1="76" y1="115" x2="55" y2="108" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="74" y1="128" x2="52" y2="128" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="124" y1="115" x2="145" y2="108" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="126" y1="128" x2="148" y2="128" stroke="black" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
